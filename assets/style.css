@@ -1,0 +1,121 @@
+body {
+    background: #535353;
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    background: #c6c6c6;
+    width: 950px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+.navbar {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    vertical-align: top;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 950px;
+    height: 20px;
+    background: #5a5a5a;
+}
+
+.navbar a {
+    text-decoration-line: underline;
+    font-weight: bold;
+}
+
+.spacer {
+    height: 17px;
+}
+
+.page {
+    width: 650px;
+    height: auto;
+    background: white;
+    padding-bottom: 14px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.panel-container {
+    text-align: center;
+}
+
+.panel {
+    max-width: 100%;
+}
+
+.text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+.text-card {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    margin-top: 14px;
+}
+
+.nav {
+    font-family: Verdana, Geneva, sans-serif;
+    margin-top: 15px;
+    font-size: 24px;
+    text-align: left;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.nav a {
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+.data-button {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.data-button a {
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+:root {
+    --color-navbar-white: white;
+    --color-navbar-green: #29ff4a;
+    --color-navbar-blue: #39d5f6;
+    --color-navbar-yellow: #f7f72a;
+    --color-navbar-orange: #ffb529;
+}
