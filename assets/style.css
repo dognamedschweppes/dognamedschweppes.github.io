@@ -97,6 +97,10 @@ body {
     text-decoration-line: underline;
 }
 
+.banner-footer {
+    margin-top: 20px;
+}
+
 .data-button {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
