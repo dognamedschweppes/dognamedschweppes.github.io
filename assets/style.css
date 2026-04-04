@@ -21,6 +21,7 @@ body {
 .navbar {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
+    color: white;
     vertical-align: top;
     text-decoration: none;
     display: flex;
@@ -59,31 +60,49 @@ body {
     text-align: center;
 }
 
-.fan-arts {
+.fan-arts-page {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    width: 100%;
-}
-
-.fan-arts-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 936px;
     background: white;
     height: auto;
     padding-bottom: 14px;
 }
 
-.fan-arts img {
-    width: 454px;
-    height: auto;
-    border: 5px outset #ababab;
-    box-sizing: border-box;
+.fan-arts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
 }
+
+.fan-art-item {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fan-arts {
+    width: 100%;
+    max-width: 450px;
+    border: 7px outset #c6c6c6;
+    box-sizing: border-box;
+    object-fit: contain;
+}
+
+.fan-arts-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
 
 .panel {
     max-width: 100%;
@@ -95,10 +114,31 @@ body {
     color: black;
     text-align: center;
     margin-top: 14px;
+    margin-bottom: 14px;
     margin-left: 25px;
     margin-right: 25px;
     font-size: 14px;
 }
+
+.fan-arts-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+.fan-arts-text a {
+    font-style: italic;
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
 
 .text-card {
     font-family: 'Courier New', Courier, monospace;
