@@ -59,6 +59,32 @@ body {
     text-align: center;
 }
 
+.fan-arts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+}
+
+.fan-arts-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 936px;
+    background: white;
+    height: auto;
+    padding-bottom: 14px;
+}
+
+.fan-arts img {
+    width: 454px;
+    height: auto;
+    border: 5px outset #ababab;
+    box-sizing: border-box;
+}
+
 .panel {
     max-width: 100%;
 }
