@@ -1,0 +1,13 @@
+<div class="banner-footer">
+    <img src="" id="header-left">
+    <img src="../assets/images/banner-footer.gif">
+    <img src="" id="header-right">
+</div>
+<script>
+    // Скрипт рандома выносим сюда, чтобы он работал везде
+    const setRandomImg = (id) => {
+        document.getElementById(id).src = "../assets/images/header-" + (Math.floor(Math.random() * 5) + 1) + ".gif";
+    };
+    setRandomImg('header-left');
+    setRandomImg('header-right');
+</script>

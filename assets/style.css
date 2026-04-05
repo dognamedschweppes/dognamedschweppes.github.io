@@ -106,6 +106,7 @@ body {
 
 .panel {
     max-width: 100%;
+    margin-bottom: 17px;
 }
 
 .text {
@@ -150,9 +151,10 @@ body {
 
 .nav {
     font-family: Verdana, Geneva, sans-serif;
-    margin-top: 15px;
     font-size: 24px;
     text-align: left;
+    margin-top: 34px;
+    margin-bottom: 34px;
     margin-left: 25px;
     margin-right: 25px;
 }
@@ -165,6 +167,7 @@ body {
 
 .banner-footer {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .data-button {
@@ -172,6 +175,7 @@ body {
     font-size: 10px;
     font-weight: bold;
     text-align: left;
+    margin-top: 34px;
     margin-left: 25px;
     margin-right: 25px;
 }
@@ -188,4 +192,19 @@ body {
     --color-navbar-blue: #39d5f6;
     --color-navbar-yellow: #f7f72a;
     --color-navbar-orange: #ffb529;
+}
+
+@font-face {
+  font-family: "cnb14p";
+  src: url("../assets/fonts/CNB14P.ttf") format("ttf"),
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.cnb14p {
+    font-family: "cnb14p";
+    font-size: 14px;
+    font-weight: normal;
+    display: inline;
 }
