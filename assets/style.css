@@ -194,6 +194,50 @@ body {
     --color-navbar-orange: #ffb529;
 }
 
+/* Контейнер для подсказки */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: #00f;
+    text-decoration: underline;
+}
+
+/* Само всплывающее окно */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #f7f7f7; /* Светло-серый, как в Windows 95 */
+    color: #000;
+    text-align: center;
+    border: 2px solid #000;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Показываем над текстом */
+    left: 50%;
+    margin-left: -100px;
+    font-family: Verdana, sans-serif;
+    font-size: 10px;
+    box-shadow: 2px 2px 0px #888; /* Ретро-тень */
+}
+
+/* Показываем при наведении */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+#autosave-icon {
+    text-decoration-line: underline;
+    display: inline-block;           /* Фиксированная ширина, чтобы скобки не двигались */
+    height: 14px;          /* Фиксированная высота, равная высоте шрифта */
+    line-height: 17px;     /* Центрируем символ внутри этой высоты */
+    text-align: center;    /* Центрируем символ по горизонтали */
+    vertical-align: bottom; /* Прижимаем коробку к нижней линии текста */
+    overflow: hidden;      /* Запрещаем символу "раздувать" коробку */
+    font-size: 10px;       /* Укажи здесь тот же размер, что у всего текста .data-button */
+}
+
 @font-face {
   font-family: "cnb14p";
   src: url("../assets/fonts/CNB14P.ttf") format("ttf"),

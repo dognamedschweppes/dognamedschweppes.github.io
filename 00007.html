@@ -30,11 +30,25 @@
                             <a href="00001">Сначала</a> | 
                             <a href="javascript:history.back()">Назад</a> 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#" onclick="saveGame(); return false;">Сохранить игру</a> | 
+                            <a href="#" onclick="saveGame(); return false;">Сохранить игру</a> 
+                            <div class="tooltip">(?) <span class="tooltiptext">Создает постоянную закладку на этой странице.</span></div> 
+
+                            
+                            | 
+                            
+                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;">Автосохранение!</a> 
+                            <div class="tooltip">
+                                (<span id="autosave-icon">?</span>) 
+                                <span class="tooltiptext">Нажмите "Автосохранение!", чтобы включить/выключить автоматическую запись прогресса.</span>
+                            </div>
+                            
+                            | 
+                            
                             <a href="#" onclick="loadGame(); return false;">Загрузить игру</a> | 
                             <a href="#" onclick="deleteSave(); return false;">Удалить игру</a>
                         </span>
                     </div>
+
                 </div>
             </main>
         </div>
