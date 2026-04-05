@@ -13,3 +13,27 @@ async function loadComponent(id, file) {
 
 loadComponent('header-placeholder', 'header.html');
 loadComponent('footer-placeholder', 'footer.html');
+
+function saveGame() {
+    const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+    
+    localStorage.setItem('my_comic_save', currentPage);
+    alert("Игра сохранена на странице " + currentPage);
+}
+
+function loadGame() {
+    const savedPage = localStorage.getItem('my_comic_save');
+    
+    if (savedPage) {
+        window.location.href = savedPage + ".html";
+    } else {
+        alert("Сохранений не найдено!");
+    }
+}
+
+function deleteSave() {
+    if (confirm("Точно удалить сохранение?")) {
+        localStorage.removeItem('my_comic_save');
+        alert("Сохранение удалено.");
+    }
+}
