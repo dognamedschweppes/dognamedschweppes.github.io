@@ -252,3 +252,9 @@ body {
     font-weight: normal;
     display: inline;
 }
+
+.cbox-container {
+    width: 650px;
+    border: 7px outset #c6c6c6;
+    background: #c6c6c6;
+}
