@@ -49,6 +49,18 @@ body {
     padding-bottom: 14px;
 }
 
+.map-page {
+    width: 936px;
+    height: auto;
+    background: white;
+    padding-bottom: 14px;
+}
+
+.map-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .title {
     text-align: center;
     font-weight: bold;
@@ -264,4 +276,11 @@ body {
     width: 650px;
     border: 7px outset #c6c6c6;
     background: #c6c6c6;
+}
+
+.map {
+    vertical-align: top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
