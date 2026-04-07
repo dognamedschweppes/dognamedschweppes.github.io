@@ -103,6 +103,11 @@ body {
     font-size: 14px;
 }
 
+.social-icon {     
+    position: relative;
+    vertical-align: middle; /* Базовое выравнивание */
+    bottom: 2px;
+}
 
 .panel {
     max-width: 100%;
