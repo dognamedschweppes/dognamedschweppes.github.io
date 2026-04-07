@@ -5,45 +5,63 @@
     <meta charset="UTF-8">
     <title>DogNamedSchweppes</title>
     <link rel="stylesheet" href="../assets/style.css">
-    <link rel="icon" href="../assets/images/favicon.gif">
+    <link rel="icon" href="../media/images/ui/favicon.gif">
+    <script src="../assets/js/loader.js" defer></script>
 </head>
-
 <body>
     <center>
-        <div class="navbar">
-            <a href="https://homestuck.com" target="_blank" style="color: var(--color-navbar-white)"> MS PAINT ADVENTURES </a>
-             | 
-            <a href="https://mspfa.com/?s=54915&p=1" target="_blank" style="color: var(--color-navbar-white)"> DOGNAMEDSCHWEPPES </a>
-            <img src="../assets/images/toffee.gif" class="panel">
-            <a href="fan-arts" style="color: var(--color-navbar-orange)"> ФАНАРТЫ </a>
-        </div>
+        <div id="header-placeholder"></div>
+
         <div class="wrapper">
             <main class="main">
                 <div class="page">
-
+                    <!-- ТУТ ТОЛЬКО УНИКАЛЬНЫЙ КОНТЕНТ СТРАНИЦЫ -->
                     <div class="text-card">Осмотреть комнату.</div>
-
                     <div class="panel-container">
-                        <img src="../assets/images/00004.gif" class="panel">
+                        <img src="../media/images/panels/00004.gif" class="panel">
                     </div>
-                    <div class="spacer"></div>
                     <div class="text">
-                        <p>Тебя зовут ЕГОР. Как уже было сказано, сегодня твой ДЕНЬ РОЖДЕНИЯ. У тебя абсолютно ноль УВЛЕЧЕНИЙ кроме ежедневных тренировок на которые ты забил. Ты любишь КРУТЫЕ sigma ФИЛЬМЫ и СЕРИАЛЫ. Тебе нравится чувствовать себя ЛУЧШЕ везде и во всём, но ЭТО НЕ ТАК. Ты не очень то и сильно любишь ИГРЫ, но иногда погамать - норм. Что ты будешь делать далее?</p>
+                        <span>Тебя зовут ЕГОР. Как уже было сказано, сегодня твой ДЕНЬ РОЖДЕНИЯ. У тебя абсолютно ноль УВЛЕЧЕНИЙ кроме ежедневных тренировок на которые ты забил. Ты любишь КРУТЫЕ sigma ФИЛЬМЫ и СЕРИАЛЫ. Тебе нравится чувствовать себя ЛУЧШЕ везде и во всём, но ЭТО НЕ ТАК. Ты не очень то и сильно любишь ИГРЫ, но иногда погамать - норм. Что ты будешь делать далее?</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="nav">
                         <span>> </span><a href="00005">Егор: Изучить плакат с волком.</a>
                     </div>
-                    <div class="spacer"></div>
-                    <div class="spacer"></div>
                     <div class="data-button">
                         <span>
-                            <a href="00001">Сначала</a> | <a href="00003">Назад</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>Сохранить игру</a> <a>(?)</a> | <a>Автосохранение!</a> <a>(?)</a> | <a>Загрузить игру</a> | <a>Удалить игру</a>
+                            <a href="00001">Сначала</a> |
+                            <a href="javascript:history.back()">Назад</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" onclick="saveGame(); return false;">Сохранить игру</a>
+                            <div class="tooltip">(?)
+                                <span class="tooltiptext">
+                                    <div class="tooltip-text">
+                                        Создает постоянную закладку на этой странице.
+                                    </div>
+                                </span>
+                            </div> |
+
+                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;">Автосохранение!</a>
+                            <div class="tooltip">
+                                (<span id="autosave-icon">?</span>)
+                                <span class="tooltiptext">
+                                    <div class="tooltip-text">
+                                        Нажмите "Автосохранение!", чтобы включить/выключить автоматическую запись прогресса.
+                                    </div>
+                                </span>
+                            </div>
+
+                            |
+
+                            <a href="#" onclick="loadGame(); return false;">Загрузить игру</a> |
+                            <a href="#" onclick="deleteSave(); return false;">Удалить игру</a>
                         </span>
                     </div>
+
                 </div>
             </main>
         </div>
+
+        <div id="footer-placeholder"></div>
     </center>
 </body>
 
