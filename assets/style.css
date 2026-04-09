@@ -342,16 +342,21 @@ body {
 .lightbox-description {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    color: white;
+    color: black;
     text-align: center;
-    font-size: 16px;
-    background: #535353;
+    font-size: 14px;
+    background: white;
     padding: 15px;
 }
 
 .lightbox-description a {
+    font-style: italic;
     color: #00F;
     text-decoration: underline;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .lightbox-description img {
