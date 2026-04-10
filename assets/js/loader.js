@@ -27,7 +27,7 @@ function getCurrentPage() {
 }
 
 // 1. СОСТОЯНИЕ АВТОСОХРАНЕНИЯ (ВКЛ/ВЫКЛ)
-let isAutosaveEnabled = localStorage.getItem('schweppes_autosave_status') !== 'off';
+let isAutosaveEnabled = localStorage.getItem('schweppes_autosave_status') === 'on';
 
 function updateAutosaveUI() {
     const icon = document.getElementById('autosave-icon');
