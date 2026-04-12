@@ -6,6 +6,7 @@
     <title>DogNamedSchweppes</title>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="icon" href="../media/images/ui/favicon.gif">
+    <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/loader.js" defer></script>
 </head>
 <body>
@@ -16,35 +17,35 @@
             <main class="main">
                 <div class="page">
                     <!-- ТУТ ТОЛЬКО УНИКАЛЬНЫЙ КОНТЕНТ СТРАНИЦЫ -->
-                    <div class="text-card">Егор: Осмотреть комод.</div>
+                    <div class="text-card" data-i18n="page_00008_title">Егор: Осмотреть комод.</div>
                     <div class="panel-container">
-                        <img src="../media/images/panels/00008.gif" class="panel">
+                        <img src="../media/images/panels/ru/00008.gif" class="panel" data-i18n-img="00008">
                     </div>
                     <div class="text">
-                        <span>На комоде твой ТЕЛЕФОН и ГИГИЕНИЧЕСКАЯ ПОМАДА. Хоть ты и sigma, но кому нравятся когда ты уже в 100й раз облизываешь свои ободранные губы? Вот именно что никому.</span>
+                        <span data-i18n="page_00008_text">На комоде твой ТЕЛЕФОН и ГИГИЕНИЧЕСКАЯ ПОМАДА. Хоть ты и sigma, но кому нравятся когда ты уже в 100й раз облизываешь свои ободранные губы? Вот именно что никому.</span>
                     </div>
                     <div class="nav">
-                        <span>> </span><a href="00009">Егор: Подобрать гигиеническую помаду.</a>
+                        <span>> </span><a href="00009" data-i18n="page_00008_link">Егор: Подобрать гигиеническую помаду.</a>
                     </div>
                     <div class="data-button">
                         <span>
-                            <a href="00001">Сначала</a> |
-                            <a href="javascript:history.back()">Назад</a>
+                            <a href="00001" data-i18n="nav_start">Сначала</a> |
+                            <a href="00007" data-i18n="nav_back">Назад</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#" onclick="saveGame(); return false;">Сохранить игру</a>
+                            <a href="#" onclick="saveGame(); return false;" data-i18n="save_game">Сохранить игру</a>
                             <div class="tooltip">(?)
                                 <span class="tooltiptext">
-                                    <div class="tooltip-text">
+                                    <div class="tooltip-text" data-i18n="save_tooltip">
                                         Создает постоянную закладку на этой странице.
                                     </div>
                                 </span>
                             </div> |
 
-                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;">Автосохранение!</a>
+                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;" data-i18n="autosave">Автосохранение!</a>
                             <div class="tooltip">
                                 (<span id="autosave-icon">?</span>)
                                 <span class="tooltiptext">
-                                    <div class="tooltip-text">
+                                    <div class="tooltip-text" data-i18n="autosave_tooltip">
                                         Нажмите "Автосохранение!", чтобы включить/выключить автоматическую запись прогресса.
                                     </div>
                                 </span>
@@ -52,8 +53,8 @@
 
                             |
 
-                            <a href="#" onclick="loadGame(); return false;">Загрузить игру</a> |
-                            <a href="#" onclick="deleteSave(); return false;">Удалить игру</a>
+                            <a href="#" onclick="loadGame(); return false;" data-i18n="load_game">Загрузить игру</a> |
+                            <a href="#" onclick="deleteSave(); return false;" data-i18n="delete_game">Удалить игру</a>
                         </span>
                     </div>
 

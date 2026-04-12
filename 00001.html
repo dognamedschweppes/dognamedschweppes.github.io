@@ -6,6 +6,7 @@
     <title>DogNamedSchweppes</title>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="icon" href="../media/images/ui/favicon.gif">
+    <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/loader.js" defer></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
                     <!-- ТУТ ТОЛЬКО УНИКАЛЬНЫЙ КОНТЕНТ СТРАНИЦЫ -->
                     <div class="text-card">DogNamedSchweppes</div>
                     <div class="panel-container">
-                        <img src="../media/images/panels/00001.gif" class="panel">
+                        <img src="../media/images/panels/ru/00001.gif" class="panel" data-i18n-img="00001">
                     </div>
                     <div class="text">
                         <span>Вот клёвый рыженький паренёк в своей комнате. Так получилось, что сегодня, 12 Июля, у него День Рождения. Неожиданно, но у этого крутого пацанчика ещё нет имени! Так как же его будут звать?</span>
@@ -28,20 +29,20 @@
                     </div>
                     <div class="data-button">
                         <span>
-                            <a href="#" onclick="saveGame(); return false;">Сохранить игру</a>
+                            <a href="#" onclick="saveGame(); return false;" data-i18n="save_game">Сохранить игру</a>
                             <div class="tooltip">(?)
                                 <span class="tooltiptext">
-                                    <div class="tooltip-text">
+                                    <div class="tooltip-text" data-i18n="save_tooltip">
                                         Создает постоянную закладку на этой странице.
                                     </div>
                                 </span>
                             </div> |
 
-                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;">Автосохранение!</a>
+                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;" data-i18n="autosave">Автосохранение!</a>
                             <div class="tooltip">
                                 (<span id="autosave-icon">?</span>)
                                 <span class="tooltiptext">
-                                    <div class="tooltip-text">
+                                    <div class="tooltip-text" data-i18n="autosave_tooltip">
                                         Нажмите "Автосохранение!", чтобы включить/выключить автоматическую запись прогресса.
                                     </div>
                                 </span>
@@ -49,8 +50,8 @@
 
                             |
 
-                            <a href="#" onclick="loadGame(); return false;">Загрузить игру</a> |
-                            <a href="#" onclick="deleteSave(); return false;">Удалить игру</a>
+                            <a href="#" onclick="loadGame(); return false;" data-i18n="load_game">Загрузить игру</a> |
+                            <a href="#" onclick="deleteSave(); return false;" data-i18n="delete_game">Удалить игру</a>
                         </span>
                     </div>
 
