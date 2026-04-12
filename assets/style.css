@@ -1,9 +1,47 @@
+/* ============================================
+   ПЕРЕМЕННЫЕ
+   ============================================ */
+:root {
+    --color-navbar-white: white;
+    --color-navbar-green: #29ff4a;
+    --color-navbar-blue: #39d5f6;
+    --color-navbar-yellow: #f7f72a;
+    --color-navbar-orange: #ffb529;
+    --color-navbar-red: #ff4136;
+    --color-navbar-magenta: #ff29f7;
+    --color-navbar-purple: #a429ff;
+}
+
+/* ============================================
+   ШРИФТЫ
+   ============================================ */
+@font-face {
+    font-family: "cnb14p";
+    src: url("../assets/fonts/CNB14P.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.cnb14p {
+    font-family: "cnb14p";
+    font-size: 14px;
+    font-weight: normal;
+    display: inline;
+}
+
+/* ============================================
+   БАЗОВЫЕ СТИЛИ
+   ============================================ */
 body {
     background: #535353;
     font-family: Verdana, Arial, sans-serif;
     margin: 0;
 }
 
+/* ============================================
+   LAYOUT / СТРУКТУРА
+   ============================================ */
 .wrapper {
     display: flex;
     justify-content: center;
@@ -18,6 +56,13 @@ body {
     padding-top: 7px;
 }
 
+.spacer {
+    height: 17px;
+}
+
+/* ============================================
+   НАВИГАЦИЯ
+   ============================================ */
 .navbar {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
@@ -38,10 +83,9 @@ body {
     font-weight: bold;
 }
 
-.spacer {
-    height: 17px;
-}
-
+/* ============================================
+   СТРАНИЦЫ
+   ============================================ */
 .page {
     width: 650px;
     height: auto;
@@ -61,17 +105,6 @@ body {
     flex-direction: column;
 }
 
-.title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.panel-container {
-    text-align: center;
-}
-
 .fan-arts-page {
     display: flex;
     flex-wrap: wrap;
@@ -82,6 +115,154 @@ body {
     padding-bottom: 14px;
 }
 
+/* ============================================
+   КОНТЕНТ СТРАНИЦ
+   ============================================ */
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.text-card {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    margin-top: 14px;
+}
+
+.text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+.panel-container {
+    text-align: center;
+}
+
+.panel {
+    max-width: 100%;
+    margin-bottom: 17px;
+}
+
+/* ============================================
+   НАВИГАЦИЯ ПО СТРАНИЦАМ
+   ============================================ */
+.nav {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 24px;
+    text-align: left;
+    margin-top: 34px;
+    margin-bottom: 34px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.nav a {
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+/* ============================================
+   КНОПКИ СОХРАНЕНИЯ
+   ============================================ */
+.data-button {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 34px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.data-button a {
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+#autosave-icon {
+    text-decoration-line: underline;
+    display: inline-block;
+    height: 14px;
+    line-height: 17px;
+    text-align: center;
+    vertical-align: bottom;
+    overflow: hidden;
+    font-size: 10px;
+}
+
+/* ============================================
+   КНОПКИ
+   ============================================ */
+.yee-haw-button {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    background: white;
+    border: 3px outset #c6c6c6;
+    padding: 5px 15px;
+    cursor: pointer;
+    color: black;
+}
+
+.yee-haw-button:hover {
+    background: #f0f0f0;
+}
+
+.yee-haw-button:active {
+    border-style: inset;
+}
+
+/* ============================================
+   TOOLTIP / ПОДСКАЗКИ
+   ============================================ */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: #00f;
+    text-decoration: underline;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: white;
+    color: #000;
+    text-align: center;
+    border: 7px outset #c6c6c6;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    font-family: Verdana, sans-serif;
+    font-size: 10px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-text {
+    margin: 7px;
+}
+
+/* ============================================
+   ФАНАРТЫ
+   ============================================ */
 .fan-arts-grid {
     column-count: 2;
     column-gap: 10px;
@@ -96,6 +277,11 @@ body {
     align-items: center;
     break-inside: avoid;
     margin-bottom: 10px;
+    cursor: default;
+}
+
+.fan-art-item img.fan-arts {
+    cursor: pointer;
 }
 
 .fan-arts {
@@ -104,39 +290,6 @@ body {
     border: 7px outset #c6c6c6;
     box-sizing: border-box;
     object-fit: contain;
-}
-
-.fan-arts-text {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.social-icon {     
-    position: relative;
-    vertical-align: middle; /* Базовое выравнивание */
-    bottom: 2px;
-}
-
-.panel {
-    max-width: 100%;
-    margin-bottom: 17px;
-}
-
-.text {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    margin-top: 14px;
-    margin-bottom: 14px;
-    margin-left: 25px;
-    margin-right: 25px;
-    font-size: 14px;
 }
 
 .fan-arts-text {
@@ -162,157 +315,9 @@ body {
     align-items: center;
 }
 
-.yee-haw-button {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 14px;
-    background: white;
-    border: 3px outset #c6c6c6;
-    padding: 5px 15px;
-    cursor: pointer;
-    color: black;
-}
-
-.yee-haw-button:hover {
-    background: #f0f0f0;
-}
-
-.yee-haw-button:active {
-    border-style: inset;
-}
-
-
-.text-card {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 14px;
-    margin-top: 14px;
-}
-
-.nav {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 24px;
-    text-align: left;
-    margin-top: 34px;
-    margin-bottom: 34px;
-    margin-left: 25px;
-    margin-right: 25px;
-}
-
-.nav a {
-    color: #00f;
-    text-decoration: none;
-    text-decoration-line: underline;
-}
-
-.banner-footer {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.data-button {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 34px;
-    margin-left: 25px;
-    margin-right: 25px;
-}
-
-.data-button a {
-    color: #00f;
-    text-decoration: none;
-    text-decoration-line: underline;
-}
-
-:root {
-    --color-navbar-white: white;
-    --color-navbar-green: #29ff4a;
-    --color-navbar-blue: #39d5f6;
-    --color-navbar-yellow: #f7f72a;
-    --color-navbar-orange: #ffb529;
-    --color-navbar-red: #ff4136;
-    --color-navbar-magenta: #ff29f7;
-    --color-navbar-purple: #a429ff;
-}
-
-/* Контейнер для подсказки */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: help;
-    color: #00f;
-    text-decoration: underline;
-}
-
-/* Само всплывающее окно */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: white;
-    color: #000;
-    text-align: center;
-    border: 7px outset #c6c6c6;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    font-family: Verdana, sans-serif;
-    font-size: 10px;
-}
-
-/* Показываем при наведении */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-
-.tooltip-text {
-    margin: 7px;
-}
-
-#autosave-icon {
-    text-decoration-line: underline;
-    display: inline-block;           /* Фиксированная ширина, чтобы скобки не двигались */
-    height: 14px;          /* Фиксированная высота, равная высоте шрифта */
-    line-height: 17px;     /* Центрируем символ внутри этой высоты */
-    text-align: center;    /* Центрируем символ по горизонтали */
-    vertical-align: bottom; /* Прижимаем коробку к нижней линии текста */
-    overflow: hidden;      /* Запрещаем символу "раздувать" коробку */
-    font-size: 10px;       /* Укажи здесь тот же размер, что у всего текста .data-button */
-}
-
-@font-face {
-  font-family: "cnb14p";
-  src: url("../assets/fonts/CNB14P.ttf") format("ttf"),
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.cnb14p {
-    font-family: "cnb14p";
-    font-size: 14px;
-    font-weight: normal;
-    display: inline;
-}
-
-.cbox-container {
-    width: 650px;
-    border: 7px outset #c6c6c6;
-    background: #c6c6c6;
-}
-
-.map {
-    vertical-align: top;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* Lightbox стили */
+/* ============================================
+   LIGHTBOX
+   ============================================ */
 .lightbox {
     display: none;
     position: fixed;
@@ -366,10 +371,148 @@ body {
     border: none !important;
 }
 
-.fan-art-item {
-    cursor: default;
+/* ============================================
+   КАРТА
+   ============================================ */
+.map {
+    vertical-align: top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.fan-art-item img.fan-arts {
+/* ============================================
+   CBOX / FOOTER
+   ============================================ */
+.banner-footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cbox-container {
+    width: 650px;
+    border: 7px outset #c6c6c6;
+    background: white;
+}
+
+.social-icon {
+    position: relative;
+    vertical-align: middle;
+    bottom: 2px;
+}
+
+/* ============================================
+   КОММЕНТАРИИ
+   ============================================ */
+.comments-section {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comments-header {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.comments-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 25px 20px 25px;
+}
+
+.comments-form input,
+.comments-form textarea {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    padding: 8px;
+    border: 3px inset #c6c6c6;
+    background: white;
+}
+
+.comments-form textarea {
+    resize: vertical;
+}
+
+.comments-form input:focus,
+.comments-form textarea:focus {
+    outline: none;
+    border-color: #00f;
+}
+
+.comments-form button {
+    align-self: flex-start;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 25px;
+}
+
+.comment {
+    border: 3px outset #c6c6c6;
+    background: #f0f0f0;
+    padding: 10px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: Verdana, sans-serif;
+    font-size: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #00f;
+}
+
+.comment-author-link {
+    font-weight: bold;
+    color: #00f;
+    text-decoration: underline;
     cursor: pointer;
+}
+
+.comment-meta {
+    color: #666;
+}
+
+.comment-page-link {
+    color: #00f;
+    text-decoration: underline;
+}
+
+.comment-date {
+    color: #666;
+}
+
+.comment-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: black;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+.comment-page {
+    margin-top: 8px;
+    font-family: Verdana, sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.comment-page a {
+    color: #00f;
+    text-decoration: underline;
 }

@@ -114,12 +114,12 @@ const translations = {
         page_fanarts_title: "Fan Arts",
 
         // Save buttons
-        save_game: "Save game",
+        save_game: "Save Game",
         save_tooltip: "Creates a permanent bookmark on this page.",
-        autosave: "Autosave!",
+        autosave: "Auto-Save!",
         autosave_tooltip: "Click \"Autosave!\" to enable/disable automatic progress saving.",
-        load_game: "Load game",
-        delete_game: "Delete game",
+        load_game: "Load Game",
+        delete_game: "Delete Game",
 
         // General
         language: "Language"

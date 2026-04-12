@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Тест комментариев - DogNamedSchweppes</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="media/images/ui/favicon.gif">
+    <script src="assets/js/comments.js"></script>
+</head>
+<body>
+    <center>
+        <div class="navbar">
+            <a href="index" style="color: var(--color-navbar-white)">← Назад на главную</a>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="wrapper">
+            <main class="main">
+                <div class="page">
+                    <div class="text-card">Тест комментариев</div>
+
+                    <div class="text">
+                        Это тестовая страница для проверки системы комментариев.
+                        <br><br>
+                        <strong>Инструкция:</strong>
+                        <br>
+                        1. Открой файл comments-test.html в редакторе
+                        <br>
+                        2. Замени YOUR_SUPABASE_URL и YOUR_SUPABASE_KEY на свои ключи
+                        <br>
+                        3. Обнови страницу
+                        <br>
+                        4. Попробуй написать комментарий!
+                    </div>
+
+                    <!-- Контейнер для комментариев -->
+                    <div id="comments-container"></div>
+                </div>
+            </main>
+        </div>
+    </center>
+
+    <script>
+        // ЗАМЕНИ ЭТИ ЗНАЧЕНИЯ НА СВОИ ИЗ SUPABASE!
+        const SUPABASE_URL = 'https://bmkpaqmzbwyeqvnolzji.supabase.co';  // Например: https://xxxxx.supabase.co
+        const SUPABASE_KEY = 'sb_publishable_aRLUFg0oyQ764ryaNBjKBg_Nn4nhjR1';  // Твой anon public ключ
+
+        // Инициализация комментариев
+        document.addEventListener('DOMContentLoaded', function() {
+            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                document.getElementById('comments-container').innerHTML = `
+                    <div class="text" style="color: red;">
+                        ⚠️ Нужно вставить свои ключи Supabase в код!
+                        <br>
+                        Открой comments-test.html и замени YOUR_SUPABASE_URL и YOUR_SUPABASE_KEY
+                    </div>
+                `;
+                return;
+            }
+
+            initComments(SUPABASE_URL, SUPABASE_KEY);
+        });
+    </script>
+</body>
+</html>
