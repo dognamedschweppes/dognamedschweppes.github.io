@@ -1,6 +1,22 @@
 // Система комментариев для DogNamedSchweppes
 // Подключение к Supabase
 
+// Защищённые ники (только админ)
+const PROTECTED_USERNAMES = ['Yaico_Belok', 'yaico_belok', 'YAICO_BELOK'];
+const ADMIN_USERNAME = 'Yaico_Belok';
+
+// Смайлики
+const EMOJI_MAP = {
+    ':p': '../media/images/emojis/tongue.gif',
+    ':)': '../media/images/emojis/smile.gif',
+    ':(': '../media/images/emojis/sad.gif',
+    ':D': '../media/images/emojis/laugh.gif',
+    ';)': '../media/images/emojis/wink.gif',
+    ':o': '../media/images/emojis/surprised.gif',
+    '<3': '../media/images/emojis/heart.gif',
+    ':3': '../media/images/emojis/cat.gif'
+};
+
 class CommentsSystem {
     constructor(supabaseUrl, supabaseKey) {
         this.supabaseUrl = supabaseUrl;
@@ -90,22 +106,43 @@ class CommentsUI {
             minute: '2-digit'
         });
 
+        // Проверяем, админ ли это
+        const isAdmin = comment.author === ADMIN_USERNAME;
+        const commentClass = isAdmin ? 'comment comment-admin' : 'comment';
+
         // Если есть ссылка, делаем имя кликабельным
+        const adminBadge = isAdmin ? '<span class="admin-badge">👑 ADMIN</span>' : '';
         const authorHtml = comment.link
             ? `<a href="${this.escapeHtml(comment.link)}" class="comment-author-link" target="_blank" rel="noopener noreferrer">${this.escapeHtml(comment.author)}</a>`
             : `<span class="comment-author">${this.escapeHtml(comment.author)}</span>`;
 
+        // Заменяем смайлики на картинки
+        const textWithEmojis = this.replaceEmojis(this.escapeHtml(comment.text));
+
         return `
-            <div class="comment">
+            <div class="${commentClass}">
                 <div class="comment-header">
-                    ${authorHtml}
+                    ${authorHtml}${adminBadge}
                     <span class="comment-meta">
                         <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> ${date}
                     </span>
                 </div>
-                <div class="comment-text">${this.escapeHtml(comment.text)}</div>
+                <div class="comment-text">${textWithEmojis}</div>
             </div>
         `;
+    }
+
+    replaceEmojis(text) {
+        let result = text;
+        for (const [emoji, imgPath] of Object.entries(EMOJI_MAP)) {
+            const regex = new RegExp(this.escapeRegex(emoji), 'g');
+            result = result.replace(regex, `<img src="${imgPath}" class="emoji" alt="${emoji}" title="${emoji}">`);
+        }
+        return result;
+    }
+
+    escapeRegex(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
     async submitComment() {
@@ -115,6 +152,12 @@ class CommentsUI {
 
         if (!author) {
             alert('Введи имя!');
+            return;
+        }
+
+        // Проверка на защищённые ники
+        if (PROTECTED_USERNAMES.some(protected => author.toLowerCase() === protected.toLowerCase())) {
+            alert('❌ Этот ник зарезервирован для администратора!');
             return;
         }
 

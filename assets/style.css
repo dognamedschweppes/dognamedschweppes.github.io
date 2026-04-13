@@ -516,3 +516,31 @@ body {
     color: #00f;
     text-decoration: underline;
 }
+
+/* Админские комментарии */
+.comment-admin {
+    background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+    border-left: 4px solid #ffd700;
+    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.2);
+}
+
+.admin-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 6px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #000;
+    font-size: 9px;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+/* Смайлики */
+.emoji {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 0 2px;
+}
