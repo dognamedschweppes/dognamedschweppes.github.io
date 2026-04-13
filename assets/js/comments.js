@@ -1,59 +1,58 @@
 // Система комментариев для DogNamedSchweppes
 // Подключение к Supabase
 
-// Защищённые ники (только админ)
-const PROTECTED_USERNAMES = ['Yaico_Belok', 'yaico_belok', 'YAICO_BELOK'];
-const ADMIN_USERNAME = 'Yaico_Belok';
-
-// Смайлики
-const EMOJI_MAP = {
-    ':p': '../media/images/emojis/tongue.gif',
-    ':)': '../media/images/emojis/smile.gif',
-    ':(': '../media/images/emojis/sad.gif',
-    ':D': '../media/images/emojis/laugh.gif',
-    ';)': '../media/images/emojis/wink.gif',
-    ':o': '../media/images/emojis/surprised.gif',
-    '<3': '../media/images/emojis/heart.gif',
-    ':3': '../media/images/emojis/cat.gif'
-};
-
 class CommentsSystem {
     constructor(supabaseUrl, supabaseKey) {
         this.supabaseUrl = supabaseUrl;
         this.supabaseKey = supabaseKey;
     }
 
-    // Получить комментарии для страницы
-    async getComments(page) {
-        // Получаем ВСЕ комментарии, не фильтруя по странице
-        const response = await fetch(`${this.supabaseUrl}/rest/v1/comments?order=created_at.desc`, {
-            headers: {
-                'apikey': this.supabaseKey,
-                'Authorization': `Bearer ${this.supabaseKey}`
+    // Получить все комментарии
+    async getComments() {
+        try {
+            const response = await fetch(`${this.supabaseUrl}/rest/v1/comments?order=created_at.desc`, {
+                headers: {
+                    'apikey': this.supabaseKey,
+                    'Authorization': `Bearer ${this.supabaseKey}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        });
-        return await response.json();
+
+            return await response.json();
+        } catch (error) {
+            console.error('Ошибка загрузки комментариев:', error);
+            return [];
+        }
     }
 
     // Добавить комментарий
     async addComment(page, author, text, link) {
-        const response = await fetch(`${this.supabaseUrl}/rest/v1/comments`, {
-            method: 'POST',
-            headers: {
-                'apikey': this.supabaseKey,
-                'Authorization': `Bearer ${this.supabaseKey}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify({
-                page: page,
-                author: author || 'Аноним',
-                text: text,
-                link: link || null,
-                created_at: new Date().toISOString()
-            })
-        });
-        return response.ok;
+        try {
+            const response = await fetch(`${this.supabaseUrl}/rest/v1/comments`, {
+                method: 'POST',
+                headers: {
+                    'apikey': this.supabaseKey,
+                    'Authorization': `Bearer ${this.supabaseKey}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    page: page,
+                    author: author,
+                    text: text,
+                    link: link || null,
+                    created_at: new Date().toISOString()
+                })
+            });
+
+            return response.ok;
+        } catch (error) {
+            console.error('Ошибка добавления комментария:', error);
+            return false;
+        }
     }
 }
 
@@ -66,12 +65,18 @@ class CommentsUI {
     }
 
     getCurrentPage() {
-        return window.location.pathname.split("/").pop().replace(".html", "") || "index";
+        const path = window.location.pathname.split("/").pop().replace(".html", "");
+        return path || "index";
     }
 
     // Отрисовать комментарии
     async render() {
-        const comments = await this.system.getComments(this.currentPage);
+        if (!this.container) {
+            console.error('Контейнер комментариев не найден!');
+            return;
+        }
+
+        const comments = await this.system.getComments();
 
         const html = `
             <div class="comments-section">
@@ -106,43 +111,22 @@ class CommentsUI {
             minute: '2-digit'
         });
 
-        // Проверяем, админ ли это
-        const isAdmin = comment.author === ADMIN_USERNAME;
-        const commentClass = isAdmin ? 'comment comment-admin' : 'comment';
-
-        // Если есть ссылка, делаем имя кликабельным
-        const adminBadge = isAdmin ? '<span class="admin-badge">👑 ADMIN</span>' : '';
+        // Имя с ссылкой или без
         const authorHtml = comment.link
             ? `<a href="${this.escapeHtml(comment.link)}" class="comment-author-link" target="_blank" rel="noopener noreferrer">${this.escapeHtml(comment.author)}</a>`
             : `<span class="comment-author">${this.escapeHtml(comment.author)}</span>`;
 
-        // Заменяем смайлики на картинки
-        const textWithEmojis = this.replaceEmojis(this.escapeHtml(comment.text));
-
         return `
-            <div class="${commentClass}">
+            <div class="comment">
                 <div class="comment-header">
-                    ${authorHtml}${adminBadge}
+                    ${authorHtml}
                     <span class="comment-meta">
-                        <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> ${date}
+                        <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> · ${date}
                     </span>
                 </div>
-                <div class="comment-text">${textWithEmojis}</div>
+                <div class="comment-text">${this.escapeHtml(comment.text)}</div>
             </div>
         `;
-    }
-
-    replaceEmojis(text) {
-        let result = text;
-        for (const [emoji, imgPath] of Object.entries(EMOJI_MAP)) {
-            const regex = new RegExp(this.escapeRegex(emoji), 'g');
-            result = result.replace(regex, `<img src="${imgPath}" class="emoji" alt="${emoji}" title="${emoji}">`);
-        }
-        return result;
-    }
-
-    escapeRegex(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
     async submitComment() {
@@ -150,14 +134,9 @@ class CommentsUI {
         const link = document.getElementById('comment-link').value.trim();
         const text = document.getElementById('comment-text').value.trim();
 
+        // Валидация
         if (!author) {
             alert('Введи имя!');
-            return;
-        }
-
-        // Проверка на защищённые ники
-        if (PROTECTED_USERNAMES.some(protected => author.toLowerCase() === protected.toLowerCase())) {
-            alert('❌ Этот ник зарезервирован для администратора!');
             return;
         }
 
@@ -171,12 +150,15 @@ class CommentsUI {
             return;
         }
 
+        // Отправка
         const success = await this.system.addComment(this.currentPage, author, text, link);
 
         if (success) {
+            // Очистка формы
             document.getElementById('comment-author').value = '';
             document.getElementById('comment-link').value = '';
             document.getElementById('comment-text').value = '';
+            // Перезагрузка комментариев
             await this.render();
         } else {
             alert('Ошибка при отправке комментария!');
@@ -190,11 +172,11 @@ class CommentsUI {
     }
 }
 
-// Глобальные переменные (будут инициализированы после настройки Supabase)
+// Глобальные переменные
 let commentsSystem;
 let commentsUI;
 
-// Функция инициализации (вызывается после загрузки страницы)
+// Функция инициализации
 function initComments(supabaseUrl, supabaseKey) {
     commentsSystem = new CommentsSystem(supabaseUrl, supabaseKey);
     commentsUI = new CommentsUI(commentsSystem, 'comments-container');

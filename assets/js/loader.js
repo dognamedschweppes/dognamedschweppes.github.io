@@ -3,7 +3,7 @@ async function loadComponent(id, file) {
     const response = await fetch(file);
     const text = await response.text();
     document.getElementById(id).innerHTML = text;
-    
+
     // Если загрузился футер (или страница с кнопками), обновляем иконку галочки/вопроса
     if (id === 'footer-placeholder' || document.getElementById('autosave-icon')) {
         updateAutosaveUI();
@@ -13,6 +13,15 @@ async function loadComponent(id, file) {
         const scripts = document.getElementById(id).getElementsByTagName('script');
         for (let script of scripts) {
             eval(script.text);
+        }
+
+        // После загрузки footer инициализируем комментарии
+        if (typeof initComments === 'function' && typeof SUPABASE_CONFIG !== 'undefined') {
+            const container = document.getElementById('comments-container');
+            if (container) {
+                console.log('Инициализация комментариев...');
+                initComments(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+            }
         }
     }
 }
