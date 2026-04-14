@@ -390,8 +390,8 @@ body {
 }
 
 .cbox-container {
-    width: 650px;
-    border: 7px outset #c6c6c6;
+    width: 636px;
+    border: 7px solid #c6c6c6;
     background: white;
 }
 
@@ -412,7 +412,7 @@ body {
 
 .comments-header {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 15px;
@@ -429,7 +429,8 @@ body {
 .comments-form input,
 .comments-form textarea {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     padding: 8px;
     border: 3px inset #c6c6c6;
     background: white;
