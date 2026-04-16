@@ -34,7 +34,7 @@ const translations = {
 
         // Страница 00006
         page_00006_title: "Егор: Изучить плакат Берсерка.",
-        page_00006_text: "Одно из твоих альтер эго, в глубине души ты ЧЁРНЫЙ МЕЧНИК. Или просто придурок с 2х метровой палкой.",
+        page_00006_text: "Одно из твоих альтер эго, в глубине души ты <span class=\"cnb14p\">ЧЁРНЫЙ МЕЧНИК.</span> Или просто придурок с 2х метровой палкой.",
         page_00006_link: "Егор: Порыться в мусорке.",
 
         // Страница 00007
@@ -96,7 +96,7 @@ const translations = {
 
         // Page 00006
         page_00006_title: "Egor: Examine the Berserk poster.",
-        page_00006_text: "One of your alter egos, deep down you are the BLACK SWORDSMAN. Or just a dumbass with a 2-meter stick.",
+        page_00006_text: "One of your alter egos, deep down you are the <span class=\"cnb14p\">BLACK SWORDSMAN.</span> Or just a dumbass with a 2-meter stick.",
         page_00006_link: "Egor: Rummage through the trash.",
 
         // Page 00007
