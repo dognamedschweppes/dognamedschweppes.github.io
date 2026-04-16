@@ -30,6 +30,17 @@
     display: inline;
 }
 
+.cnb14p-28 {
+    font-family: "cnb14p";
+    font-size: 28px;
+    font-weight: normal;
+    display: inline;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: none;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
 /* ============================================
    БАЗОВЫЕ СТИЛИ
    ============================================ */
@@ -392,7 +403,7 @@ body {
 }
 
 .cbox-container {
-    width: 143px;
+    width: 216px;
     border: 7px solid #c6c6c6;
     background: white;
 }
@@ -408,8 +419,8 @@ body {
    ============================================ */
 .comments-section {
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 .comments-header {
@@ -419,6 +430,7 @@ body {
     text-align: center;
     margin-bottom: 15px;
     color: black;
+    
 }
 
 .comments-form {

@@ -80,8 +80,8 @@ class CommentsUI {
 
         const html = `
             <div class="comments-section">
-                <div class="comments-header">
-                    <span data-i18n="comments_title">Комментарии</span> (${comments.length})
+                <div class="comments-header" >
+                    <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span> (${comments.length})
                 </div>
 
                 <div class="comments-form">
