@@ -126,6 +126,32 @@ body {
     padding-bottom: 14px;
 }
 
+.news-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 554px;
+    background: white;
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin-left: 14px;
+    margin-right: 14px;
+    border: 7px solid #c6c6c6;
+}
+
+.last-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 110px;
+    background: white;
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border: 7px solid #c6c6c6;
+}
+
 /* ============================================
    КОНТЕНТ СТРАНИЦ
    ============================================ */
@@ -402,6 +428,14 @@ body {
     margin-bottom: 20px;
 }
 
+.news-footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .cbox-container {
     width: 216px;
     border: 7px solid #c6c6c6;
@@ -424,11 +458,11 @@ body {
 }
 
 .comments-header {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 24px;
-    font-weight: bold;
+    font-family: "cnb14p";
+    font-size: 28px;
+    font-weight: normal;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     color: black;
     
 }
@@ -531,3 +565,7 @@ body {
     color: #00f;
     text-decoration: underline;
 }
+
+/* ============================================
+   НОВОСТИ
+   ============================================ */
