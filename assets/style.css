@@ -137,19 +137,51 @@ body {
     padding-bottom: 14px;
     margin-left: 14px;
     margin-right: 14px;
-    border: 7px solid #c6c6c6;
+
+}
+
+.news-entry {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    width: 526px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.news-info {
+    text-align: left;
+    font-style: italic;
+    margin-top: 14px;
+}
+
+.news-content {
+    border-top: 1px solid rgb(211, 211, 211);
+    width: 100%;
+    text-align: justify;
+    padding-top: 7px;
+    
 }
 
 .last-page {
+    font-family: "cnb14p";
+    font-size: 28px;
+    font-weight: normal;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 110px;
+    width: 178px;
     background: white;
     height: auto;
     padding-top: 14px;
     padding-bottom: 14px;
-    border: 7px solid #c6c6c6;
+    border-left: 7px solid #c6c6c6;
+}
+
+.last-page-header {
+
 }
 
 /* ============================================
@@ -438,7 +470,7 @@ body {
 
 .cbox-container {
     width: 216px;
-    border: 7px solid #c6c6c6;
+    border-right: 7px solid #c6c6c6;
     background: white;
 }
 
@@ -479,7 +511,7 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     font-weight: bold;
-    padding: 8px;
+    padding: 7px;
     border: 3px inset #c6c6c6;
     background: white;
 }
@@ -501,7 +533,7 @@ body {
 .comments-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
     margin: 0 25px;
 }
 
@@ -533,9 +565,11 @@ body {
 
 .comment-meta {
     color: #666;
+    font-weight: bold;
 }
 
 .comment-page-link {
+    font-weight: bold;
     color: #00f;
     text-decoration: underline;
 }
@@ -545,8 +579,9 @@ body {
 }
 
 .comment-text {
+    font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
+    font-size: 14px;
     color: black;
     word-wrap: break-word;
     white-space: pre-wrap;
@@ -554,7 +589,8 @@ body {
 }
 
 .comment-page {
-    margin-top: 8px;
+    font-weight: bold;s
+    margin-top: 7px;
     font-family: Verdana, sans-serif;
     font-size: 10px;
     font-style: italic;

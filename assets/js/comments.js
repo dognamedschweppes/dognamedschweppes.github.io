@@ -86,8 +86,8 @@ class CommentsUI {
 
                 <div class="comments-form">
                     <input type="text" id="comment-author" placeholder="Имя" maxlength="30" required>
-                    <input type="url" id="comment-link" placeholder="Ссылка на вас VK/Telegram/Discord/Neocities и т. д. (необязательно)" maxlength="200">
-                    <textarea id="comment-text" placeholder="Напиши что-нибудь..." maxlength="500" rows="3"></textarea>
+                    <textarea id="comment-link" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
+                    <textarea id="comment-text" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
                     <button onclick="commentsUI.submitComment()" class="yee-haw-button">
                         <span data-i18n="comments_submit">Отправить</span>
                     </button>
