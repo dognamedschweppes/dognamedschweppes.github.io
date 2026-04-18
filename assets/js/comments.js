@@ -79,23 +79,21 @@ class CommentsUI {
         const comments = await this.system.getComments();
 
         const html = `
-            <div class="comments-section">
-                <div class="comments-header" >
-                    <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span> (${comments.length})
-                </div>
+            <div class="comments-header" >
+                <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span> (${comments.length})
+            </div>
 
-                <div class="comments-form">
-                    <input type="text" id="comment-author" placeholder="Имя" maxlength="30" required>
-                    <textarea id="comment-link" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
-                    <textarea id="comment-text" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
-                    <button onclick="commentsUI.submitComment()" class="yee-haw-button">
-                        <span data-i18n="comments_submit">Отправить</span>
-                    </button>
-                </div>
+            <div class="comments-form">
+                <input type="text" id="comment-author" placeholder="Имя" maxlength="30" required>
+                <textarea id="comment-link" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
+                <textarea id="comment-text" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
+                <button onclick="commentsUI.submitComment()" class="yee-haw-button">
+                    <span data-i18n="comments_submit">Отправить</span>
+                </button>
+            </div>
 
-                <div class="comments-list">
-                    ${comments.map(c => this.renderComment(c)).join('')}
-                </div>
+            <div class="comments-list">
+                ${comments.map(c => this.renderComment(c)).join('')}
             </div>
         `;
 
