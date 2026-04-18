@@ -17,7 +17,7 @@
    ============================================ */
 @font-face {
     font-family: "cnb14p";
-    src: url("../assets/fonts/CNB14P.ttf") format("ttf");
+    src: url("../assets/fonts/CNB14P.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -166,14 +166,18 @@ body {
 }
 
 .last-page {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 164px;
     background: #c6c6c6;
     height: auto;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     border-top: 7px solid white;
     border-right: 7px solid white;
 }
@@ -182,14 +186,26 @@ body {
     font-family: "cnb14p";
     font-size: 28px;
     font-weight: normal;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
     -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: grayscale;
-    font-smooth: never;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+    color: black;
     text-shadow: 
-        1px  1px 0px var(--color-navbar-green),  /* 1-я тень: вправо 1px, вниз 1px */
-        2px  2px 0px var(--color-navbar-green);  /* 2-я тень: вправо 2px, вниз 2px */
+        1px 1px 0px var(--color-navbar-green),
+        2px 2px 0px var(--color-navbar-green);
+    text-rendering: crispEdges;
+}
+
+.last-page-content {
+    text-align: left;
+    margin-left: 7px;
+}
+
+.last-page a {
+    color: #00f;
+    text-decoration: none;
+    text-decoration-line: underline;
 }
 
 .comments-page {
@@ -197,8 +213,25 @@ body {
     border-top: 7px solid #c6c6c6;
     border-left: 7px solid #c6c6c6;
     background: white;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.comments-header {
+    font-family: "cnb14p";
+    font-size: 28px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 7px;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: none;
+    color: black;
+    text-shadow: 
+        1px 1px 0px var(--color-navbar-blue),
+        2px 2px 0px var(--color-navbar-blue);
+    text-rendering: crispEdges;
 }
 
 /* ============================================
@@ -498,19 +531,6 @@ body {
     width: 100%;
     margin-top: 14px;
     margin-bottom: 14px;
-}
-
-.comments-header {
-    font-family: "cnb14p";
-    font-size: 28px;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: 14px;
-    color: black;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: none;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
 }
 
 .comments-form {

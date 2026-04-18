@@ -16,7 +16,30 @@
         <div class="last-page-header">
             <span>ПОСЛЕДНИЕ СТРАНИЦЫ</span>
         </div>
+        <div class="last-page-content" id="last-pages-list"></div>
     </div>
+    <script>
+        // Список страниц с датами публикации (от новых к старым)
+        const pages = [
+            { title: "Егор: Осмотреть комод.", date: "18.04.2026", url: "00008" },
+            { title: "Егор: Порыться в мусорке.", date: "17.04.2026", url: "00007" },
+            { title: "Егор: Изучить плакат Берсерка.", date: "16.04.2026", url: "00006" },
+            { title: "Егор: Изучить плакат с волком.", date: "15.04.2026", url: "00005" },
+            { title: "Осмотреть комнату.", date: "14.04.2026", url: "00004" },
+            { title: "Вторая попытка.", date: "13.04.2026", url: "00003" },
+            { title: "Введите имя.", date: "12.04.2026", url: "00002" },
+            { title: "DogNamedSchweppes", date: "12.04.2026", url: "00001" }
+        ];
+
+        // Генерация списка страниц
+        const listContainer = document.getElementById('last-pages-list');
+        pages.forEach(page => {
+            const entry = document.createElement('div');
+            entry.className = 'last-page-entry';
+            entry.innerHTML = `${page.date} - <a href="${page.url}" class="last-page-link">"${page.title}"</a>`;
+            listContainer.appendChild(entry);
+        });
+    </script>
     <div class="news-page">
         <img src="../media/images/ui/news.gif">
         <div class="news-entry">
