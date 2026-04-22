@@ -47,6 +47,11 @@ const translations = {
         page_00008_text: "На комоде твой ТЕЛЕФОН и ГИГИЕНИЧЕСКАЯ ПОМАДА. Хоть ты и sigma, но кому нравятся когда ты уже в 100й раз облизываешь свои ободранные губы? Вот именно что никому.",
         page_00008_link: "Егор: Подобрать гигиеническую помаду.",
 
+        // Страница 00009
+        page_00009_title: "Егор: Подобрать гигиеническую помаду.",
+        page_00009_text: "Ты укладываешь ГИГИЕНИЧЕСКУЮ ПОМАДУ на одну из КАРТ КАПЧАЛОГА в своей ИНВЕНТЕКЕ. Что за чушь? Какие ещё карты? Неужели нельзя было просто взять её в руки там незнаю. Ладно… Ты соглашаешься на использование этих непонятных карт. Другого выбора же нет да? У тебя осталось ещё пять пустых КАРТ КАПЧАЛОГА.",
+        page_00009_link: "Егор: Использовать гигиеническую помаду.",
+
         // Специальные страницы
         page_map_title: "Карта приключения",
         page_fanarts_title: "Фанарты",
@@ -108,6 +113,11 @@ const translations = {
         page_00008_title: "Egor: Examine the dresser.",
         page_00008_text: "On the dresser are your PHONE and LIP BALM. Even though you're sigma, who likes it when you lick your chapped lips for the 100th time? That's right, nobody.",
         page_00008_link: "Egor: Pick up the lip balm.",
+
+        // Page 00009
+        page_00009_title: "Egor: Take the lip balm.",
+        page_00009_text: "You place the LIP BALM on one of the CAPTCHALOGUE CARDS in your SYLLADEX. What nonsense? What cards? Couldn't you just, I don't know, pick it up? Alright… You agree to use these strange cards. There's no other choice, right? You still have five empty CAPTCHALOGUE CARDS left.",
+        page_00009_link: "Egor: Use lip balm.",
 
         // Special pages
         page_map_title: "Adventure Map",
