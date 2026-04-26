@@ -4,7 +4,6 @@
     <img src="" id="header-right">
 </div>
 <script>
-    // Скрипт рандома выносим сюда, чтобы он работал везде
     const setRandomImg = (id) => {
         document.getElementById(id).src = "../media/images/ui/header-" + (Math.floor(Math.random() * 5) + 1) + ".gif";
     };
@@ -19,7 +18,7 @@
         <div class="last-page-content" id="last-pages-list"></div>
     </div>
     <script>
-        // Список страниц с датами публикации (от новых к старым)
+        const pages = [
         const pages = [
             { title: "Егор: Осмотреть комод.", date: "18.04.2026", url: "00008" },
             { title: "Егор: Порыться в мусорке.", date: "17.04.2026", url: "00007" },
@@ -31,7 +30,6 @@
             { title: "DogNamedSchweppes", date: "12.04.2026", url: "00001" }
         ];
 
-        // Генерация списка страниц
         const listContainer = document.getElementById('last-pages-list');
         pages.forEach(page => {
             const entry = document.createElement('div');

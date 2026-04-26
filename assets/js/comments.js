@@ -1,13 +1,9 @@
-// Система комментариев для DogNamedSchweppes
-// Подключение к Supabase
-
 class CommentsSystem {
     constructor(supabaseUrl, supabaseKey) {
         this.supabaseUrl = supabaseUrl;
         this.supabaseKey = supabaseKey;
     }
 
-    // Получить все комментарии
     async getComments() {
         try {
             const response = await fetch(`${this.supabaseUrl}/rest/v1/comments?order=created_at.desc`, {
@@ -28,7 +24,6 @@ class CommentsSystem {
         }
     }
 
-    // Добавить комментарий
     async addComment(page, author, text, link) {
         try {
             const response = await fetch(`${this.supabaseUrl}/rest/v1/comments`, {
@@ -56,7 +51,6 @@ class CommentsSystem {
     }
 }
 
-// UI для комментариев
 class CommentsUI {
     constructor(commentsSystem, containerId) {
         this.system = commentsSystem;
@@ -69,7 +63,6 @@ class CommentsUI {
         return path || "index";
     }
 
-    // Отрисовать комментарии
     async render() {
         if (!this.container) {
             console.error('Контейнер комментариев не найден!');
@@ -109,7 +102,6 @@ class CommentsUI {
             minute: '2-digit'
         });
 
-        // Имя с ссылкой или без
         const authorHtml = comment.link
             ? `<a href="${this.escapeHtml(comment.link)}" class="comment-author-link" target="_blank" rel="noopener noreferrer">${this.escapeHtml(comment.author)}</a>`
             : `<span class="comment-author">${this.escapeHtml(comment.author)}</span>`;
@@ -132,7 +124,6 @@ class CommentsUI {
         const link = document.getElementById('comment-link').value.trim();
         const text = document.getElementById('comment-text').value.trim();
 
-        // Валидация
         if (!author) {
             alert('Введи имя!');
             return;
@@ -148,15 +139,12 @@ class CommentsUI {
             return;
         }
 
-        // Отправка
         const success = await this.system.addComment(this.currentPage, author, text, link);
 
         if (success) {
-            // Очистка формы
             document.getElementById('comment-author').value = '';
             document.getElementById('comment-link').value = '';
             document.getElementById('comment-text').value = '';
-            // Перезагрузка комментариев
             await this.render();
         } else {
             alert('Ошибка при отправке комментария!');
@@ -170,11 +158,9 @@ class CommentsUI {
     }
 }
 
-// Глобальные переменные
 let commentsSystem;
 let commentsUI;
 
-// Функция инициализации
 function initComments(supabaseUrl, supabaseKey) {
     commentsSystem = new CommentsSystem(supabaseUrl, supabaseKey);
     commentsUI = new CommentsUI(commentsSystem, 'comments-container');

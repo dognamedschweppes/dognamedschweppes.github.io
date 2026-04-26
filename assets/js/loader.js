@@ -1,10 +1,8 @@
-// --- ЗАГРУЗКА КОМПОНЕНТОВ ---
 async function loadComponent(id, file) {
     const response = await fetch(file);
     const text = await response.text();
     document.getElementById(id).innerHTML = text;
 
-    // Если загрузился футер (или страница с кнопками), обновляем иконку галочки/вопроса
     if (id === 'footer-placeholder' || document.getElementById('autosave-icon')) {
         updateAutosaveUI();
     }
@@ -15,7 +13,6 @@ async function loadComponent(id, file) {
             eval(script.text);
         }
 
-        // После загрузки footer инициализируем комментарии
         if (typeof initComments === 'function' && typeof SUPABASE_CONFIG !== 'undefined') {
             const container = document.getElementById('comments-container');
             if (container) {
@@ -29,13 +26,10 @@ async function loadComponent(id, file) {
 loadComponent('header-placeholder', 'header.html');
 loadComponent('footer-placeholder', 'footer.html');
 
-// --- ЛОГИКА ИГРЫ ---
-
 function getCurrentPage() {
     return window.location.pathname.split("/").pop().replace(".html", "") || "index";
 }
 
-// 1. СОСТОЯНИЕ АВТОСОХРАНЕНИЯ (ВКЛ/ВЫКЛ)
 let isAutosaveEnabled = localStorage.getItem('schweppes_autosave_status') === 'on';
 
 function updateAutosaveUI() {
@@ -51,20 +45,17 @@ function toggleAutosave() {
     updateAutosaveUI();
 }
 
-// 2. ОБЫЧНОЕ СОХРАНЕНИЕ
 function saveGame() {
     const page = getCurrentPage();
     localStorage.setItem('schweppes_manual_save', page);
     alert("Игра сохранена вручную: " + page);
 }
 
-// 3. АВТОСОХРАНЕНИЕ (срабатывает, только если включено)
 const currentPage = getCurrentPage();
 if (currentPage !== "index" && isAutosaveEnabled) {
     localStorage.setItem('schweppes_autosave', currentPage);
 }
 
-// 4. ЗАГРУЗКА
 function loadGame() {
     const manual = localStorage.getItem('schweppes_manual_save');
     const auto = localStorage.getItem('schweppes_autosave');
@@ -77,12 +68,11 @@ function loadGame() {
     }
 }
 
-// 5. УДАЛЕНИЕ
 function deleteSave() {
     if (confirm("Удалить все данные игры?")) {
         localStorage.removeItem('schweppes_manual_save');
         localStorage.removeItem('schweppes_autosave');
         localStorage.removeItem('schweppes_autosave_status');
-        location.reload(); 
+        location.reload();
     }
 }

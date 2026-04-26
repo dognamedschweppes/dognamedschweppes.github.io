@@ -1,6 +1,3 @@
-/* ============================================
-   ПЕРЕМЕННЫЕ
-   ============================================ */
 :root {
     --color-navbar-white: white;
     --color-navbar-green: #29ff4a;
@@ -12,9 +9,6 @@
     --color-navbar-purple: #a429ff;
 }
 
-/* ============================================
-   ШРИФТЫ
-   ============================================ */
 @font-face {
     font-family: "cnb14p";
     src: url("../assets/fonts/CNB14P.woff2") format("woff2");
@@ -30,29 +24,12 @@
     display: inline;
 }
 
-.cnb14p-28 {
-    font-family: "cnb14p";
-    font-size: 28px;
-    font-weight: normal;
-    display: inline;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: none;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-}
-
-/* ============================================
-   БАЗОВЫЕ СТИЛИ
-   ============================================ */
 body {
     background: #535353;
     font-family: Verdana, Arial, sans-serif;
     margin: 0;
 }
 
-/* ============================================
-   LAYOUT / СТРУКТУРА
-   ============================================ */
 .wrapper {
     display: flex;
     justify-content: center;
@@ -71,9 +48,6 @@ body {
     height: 17px;
 }
 
-/* ============================================
-   НАВИГАЦИЯ
-   ============================================ */
 .navbar {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
@@ -94,9 +68,6 @@ body {
     font-weight: bold;
 }
 
-/* ============================================
-   СТРАНИЦЫ
-   ============================================ */
 .page {
     width: 650px;
     height: auto;
@@ -192,7 +163,7 @@ body {
     backface-visibility: hidden;
     -webkit-font-smoothing: none;
     color: black;
-    text-shadow: 
+    text-shadow:
         1px 1px 0px var(--color-navbar-green),
         2px 2px 0px var(--color-navbar-green);
     text-rendering: crispEdges;
@@ -231,15 +202,12 @@ body {
     backface-visibility: hidden;
     -webkit-font-smoothing: none;
     color: black;
-    text-shadow: 
+    text-shadow:
         1px 1px 0px var(--color-navbar-blue),
         2px 2px 0px var(--color-navbar-blue);
     text-rendering: crispEdges;
 }
 
-/* ============================================
-   КОНТЕНТ СТРАНИЦ
-   ============================================ */
 .title {
     text-align: center;
     font-weight: bold;
@@ -278,9 +246,6 @@ body {
     margin-bottom: 17px;
 }
 
-/* ============================================
-   НАВИГАЦИЯ ПО СТРАНИЦАМ
-   ============================================ */
 .nav {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 24px;
@@ -297,9 +262,6 @@ body {
     text-decoration-line: underline;
 }
 
-/* ============================================
-   КНОПКИ СОХРАНЕНИЯ
-   ============================================ */
 .data-button {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
@@ -327,9 +289,6 @@ body {
     font-size: 10px;
 }
 
-/* ============================================
-   КНОПКИ
-   ============================================ */
 .yee-haw-button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -369,9 +328,6 @@ body {
     border-style: inset;
 }
 
-/* ============================================
-   TOOLTIP / ПОДСКАЗКИ
-   ============================================ */
 .tooltip {
     position: relative;
     display: inline-block;
@@ -404,9 +360,6 @@ body {
     margin: 7px;
 }
 
-/* ============================================
-   ФАНАРТЫ
-   ============================================ */
 .fan-arts-grid {
     column-count: 2;
     column-gap: 10px;
@@ -459,9 +412,6 @@ body {
     align-items: center;
 }
 
-/* ============================================
-   LIGHTBOX
-   ============================================ */
 .lightbox {
     display: none;
     position: fixed;
@@ -515,9 +465,6 @@ body {
     border: none !important;
 }
 
-/* ============================================
-   КАРТА
-   ============================================ */
 .map {
     vertical-align: top;
     display: flex;
@@ -525,9 +472,6 @@ body {
     align-items: flex-start;
 }
 
-/* ============================================
-   CBOX / FOOTER
-   ============================================ */
 .banner-footer {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -541,15 +485,6 @@ body {
     align-items: flex-start;
 }
 
-.social-icon {
-    position: relative;
-    vertical-align: middle;
-    bottom: 2px;
-}
-
-/* ============================================
-   КОММЕНТАРИИ
-   ============================================ */
 .comments-section {
     width: 100%;
     margin-top: 14px;
@@ -631,10 +566,6 @@ body {
     text-decoration: underline;
 }
 
-.comment-date {
-    color: #535353;
-}
-
 .comment-text {
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
@@ -644,21 +575,3 @@ body {
     white-space: pre-wrap;
     text-align: left;
 }
-
-.comment-page {
-    font-weight: bold;
-    margin-top: 7px;
-    font-family: Verdana, sans-serif;
-    font-size: 10px;
-    font-style: italic;
-    color: #535353;
-}
-
-.comment-page a {
-    color: #00f;
-    text-decoration: underline;
-}
-
-/* ============================================
-   НОВОСТИ
-   ============================================ */
