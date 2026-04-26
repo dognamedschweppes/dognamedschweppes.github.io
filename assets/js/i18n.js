@@ -37,7 +37,15 @@ const translations = {
         autosave_tooltip: "Нажмите \"Автосохранение!\", чтобы включить/выключить автоматическую запись прогресса.",
         load_game: "Загрузить игру",
         delete_game: "Удалить игру",
-        language: "Язык"
+        language: "Язык",
+        last_pages_title: "ПОСЛЕДНИЕ СТРАНИЦЫ",
+        news_published: "Опубликовано",
+        comments_title: "ЯЩИК ПРЕДЛОЖЕНИЙ",
+        comments_submit: "Отправить",
+        comment_name_placeholder: "Имя",
+        comment_link_placeholder: "Ссылка на вас (необязательно)",
+        comment_text_placeholder: "Напиши что-нибудь...",
+        news_text: "швепса в массыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы всем привет ребята я тигр и это новое моё шоу тигр шоу. хехээээээээээээээээээээй здравствуйте друзья меня зовут дмитрий это канал куплинов плей. добрый день дорогие друзья с вами снова перпетум или же александр"
     },
     en: {
         nav_map: "MAP",
@@ -77,7 +85,15 @@ const translations = {
         autosave_tooltip: "Click \"Autosave!\" to enable/disable automatic progress saving.",
         load_game: "Load Game",
         delete_game: "Delete Game",
-        language: "Language"
+        language: "Language",
+        last_pages_title: "LAST PAGES",
+        news_published: "Published",
+        comments_title: "SUGGESTION BOX",
+        comments_submit: "Submit",
+        comment_name_placeholder: "Name",
+        comment_link_placeholder: "Link to you (optional)",
+        comment_text_placeholder: "Write something...",
+        news_text: "schweppes to the maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasses hey everyone guys im tiger and this is my new show tiger show. heheyyyyyyyyyyyy hello friends my name is dmitry this is the kuplinov play channel. good afternoon dear friends perpetuum or alexander is with you again"
     }
 };
 
@@ -115,7 +131,18 @@ function updatePageLanguage() {
         img.src = `../media/images/panels/${lang}/${panelId}.gif`;
     });
 
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+            element.placeholder = t[key];
+        }
+    });
+
     updateLanguageSwitcher();
+
+    if (window.updateNews) {
+        window.updateNews();
+    }
 }
 
 function updateLanguageSwitcher() {

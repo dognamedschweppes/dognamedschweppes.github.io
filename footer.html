@@ -13,7 +13,7 @@
 <div class="news-footer">
     <div class="last-page">
         <div class="last-page-header">
-            <span>ПОСЛЕДНИЕ СТРАНИЦЫ</span>
+            <span data-i18n="last_pages_title">ПОСЛЕДНИЕ СТРАНИЦЫ</span>
         </div>
         <div class="last-page-content" id="last-pages-list"></div>
     </div>
@@ -38,16 +38,26 @@
         });
     </script>
     <div class="news-page">
-        <img src="../media/images/ui/news.gif">
+        <img src="" id="news-img">
         <div class="news-entry">
             <div class="news-info">
-                <span>Опубликовано 17.04.2026</span>
+                <span data-i18n="news_published">Опубликовано</span> <span id="news-date">17.04.2026</span>
             </div>
             <div class="news-content">
-                <span>швепса в массыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы всем привет ребята я тигр и это новое моё шоу тигр шоу. хехээээээээээээээээээээй здравствуйте друзья меня зовут дмитрий это канал куплинов плей. добрый день дорогие друзья с вами снова перпетум или же александр</span>
+                <span id="news-text" data-i18n="news_text"></span>
             </div>
         </div>
     </div>
+    <script>
+        window.updateNews = function() {
+            const lang = localStorage.getItem('language') || 'ru';
+            const newsImg = document.getElementById('news-img');
+            if (newsImg) {
+                newsImg.src = `../media/images/ui/${lang}/news.gif`;
+            }
+        }
+        updateNews();
+    </script>
     <div class="comments-page">
         <div id="comments-container"></div>
     </div>

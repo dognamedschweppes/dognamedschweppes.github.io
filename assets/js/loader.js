@@ -13,6 +13,10 @@ async function loadComponent(id, file) {
             eval(script.text);
         }
 
+        if (typeof updatePageLanguage === 'function') {
+            updatePageLanguage();
+        }
+
         if (typeof initComments === 'function' && typeof SUPABASE_CONFIG !== 'undefined') {
             const container = document.getElementById('comments-container');
             if (container) {

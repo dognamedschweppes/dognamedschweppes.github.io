@@ -77,9 +77,9 @@ class CommentsUI {
             </div>
 
             <div class="comments-form">
-                <input type="text" id="comment-author" placeholder="Имя" maxlength="30" required>
-                <textarea id="comment-link" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
-                <textarea id="comment-text" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
+                <input type="text" id="comment-author" data-i18n-placeholder="comment_name_placeholder" placeholder="Имя" maxlength="30" required>
+                <textarea id="comment-link" data-i18n-placeholder="comment_link_placeholder" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
+                <textarea id="comment-text" data-i18n-placeholder="comment_text_placeholder" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
                 <button onclick="commentsUI.submitComment()" class="comments-button">
                     <span data-i18n="comments_submit">Отправить</span>
                 </button>
