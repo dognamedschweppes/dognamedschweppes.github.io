@@ -597,7 +597,7 @@ body {
 .comment {
     border: 3px outset #c6c6c6;
     background: white;
-    padding: 10px;
+    padding: 7px;
 }
 
 .comment-header {
@@ -610,7 +610,7 @@ body {
 
 .comment-author {
     font-weight: bold;
-    color: #00f;
+    color: black;
 }
 
 .comment-author-link {
@@ -621,18 +621,22 @@ body {
 }
 
 .comment-meta {
+    font-size: 8px;
     color: #535353;
     font-weight: bold;
+    text-align: left;
+    width: 66px;
 }
 
 .comment-page-link {
+    font-size: 10px;
     font-weight: bold;
     color: #00f;
     text-decoration: underline;
 }
 
 .comment-date {
-    color: #535353;
+    text-align: justify;
 }
 
 .comment-text {

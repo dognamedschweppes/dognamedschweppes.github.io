@@ -119,7 +119,7 @@ class CommentsUI {
                 <div class="comment-header">
                     ${authorHtml}
                     <span class="comment-meta">
-                        <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> · ${date}
+                        <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> <div class="comment-date">${date}</div>
                     </span>
                 </div>
                 <div class="comment-text">${this.escapeHtml(comment.text)}</div>
