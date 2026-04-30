@@ -96,7 +96,6 @@
         <div id="footer-placeholder"></div>
     </center>
 
-    <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <div class="lightbox-content">
             <img id="lightbox-img" src="" alt="">
@@ -105,19 +104,15 @@
     </div>
 
     <script>
-        // Создаём аудио один раз при загрузке страницы
         const yeeHawAudio = new Audio('../media/sounds/yee-haw.mp3');
 
         function openLightbox(element) {
-            // Находим картинку и текст внутри кликнутого элемента
             const img = element.querySelector('img');
             const text = element.querySelector('.fan-arts-text').innerHTML;
 
-            // Вставляем в lightbox
             document.getElementById('lightbox-img').src = img.src;
             document.getElementById('lightbox-text').innerHTML = text;
 
-            // Показываем lightbox
             document.getElementById('lightbox').style.display = 'flex';
         }
 
@@ -128,7 +123,6 @@
         function playYeeHaw(event) {
             event.stopPropagation();
 
-            // Останавливаем и перематываем в начало
             yeeHawAudio.pause();
             yeeHawAudio.currentTime = 0;
             yeeHawAudio.play();

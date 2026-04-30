@@ -34,7 +34,6 @@
                         4. Попробуй написать комментарий!
                     </div>
 
-                    <!-- Контейнер для комментариев -->
                     <div id="comments-container"></div>
                 </div>
             </main>
@@ -42,11 +41,9 @@
     </center>
 
     <script>
-        // ЗАМЕНИ ЭТИ ЗНАЧЕНИЯ НА СВОИ ИЗ SUPABASE!
-        const SUPABASE_URL = 'https://bmkpaqmzbwyeqvnolzji.supabase.co';  // Например: https://xxxxx.supabase.co
-        const SUPABASE_KEY = 'sb_publishable_aRLUFg0oyQ764ryaNBjKBg_Nn4nhjR1';  // Твой anon public ключ
+        const SUPABASE_URL = 'https://bmkpaqmzbwyeqvnolzji.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_aRLUFg0oyQ764ryaNBjKBg_Nn4nhjR1';
 
-        // Инициализация комментариев
         document.addEventListener('DOMContentLoaded', function() {
             if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
                 document.getElementById('comments-container').innerHTML = `
