@@ -546,6 +546,7 @@ body {
 .comment-author {
     font-weight: bold;
     color: black;
+    text-align: left;
 }
 
 .comment-author-link {
@@ -553,6 +554,7 @@ body {
     color: #00f;
     text-decoration: underline;
     cursor: pointer;
+    text-align: left;
 }
 
 .comment-meta {
