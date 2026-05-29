@@ -109,7 +109,46 @@
                             </div>
                         </div>
 
+                        <div class="fan-art-item">
+                            <img src="../media/images/fan-arts/art-13.gif" class="fan-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"волосатый пони" от <a href="https://www.tiktok.com/@dognamedschweppes?_r=1&_t=ZS-96igZFkVLGP" target="_blank">DNS fanpage :33<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/fan-arts/art-14.gif" class="fan-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"рыжий пони" от <a href="https://www.tiktok.com/@dognamedschweppes?_r=1&_t=ZS-96igZFkVLGP" target="_blank">DNS fanpage :33<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        
                     </div>
+
+                    <div class="spoiler-container">
+                    <button class="spoiler-button" onclick="toggleSpoiler(this)">Зарисовки психа 🠋</button>
+
+                    <div class="spoiler-content" style="display: none;">
+                        <div class="fan-arts-grid">
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/fan-arts/art-15.gif" class="fan-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"далбаёбы" от <a href="dognamedschweppes@gmail.com" target="_blank">Yaico_Belok</a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/fan-arts/art-16.gif" class="fan-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"Цар(л)ь" от <a href="dognamedschweppes@gmail.com" target="_blank">Yaico_Belok</a></span>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                    </div>    
                 </div>
             </main>
         </div>
@@ -147,6 +186,17 @@
             yeeHawAudio.pause();
             yeeHawAudio.currentTime = 0;
             yeeHawAudio.play();
+        }
+
+        function toggleSpoiler(button) {
+            const spoilerContent = button.nextElementSibling;
+            if (spoilerContent.style.display === 'none') {
+                spoilerContent.style.display = 'block';
+                button.innerHTML = 'Скрыть зарисовки психа 🠉';
+            } else {
+                spoilerContent.style.display = 'none';
+                button.innerHTML = 'Зарисовки психа 🠋';
+            }
         }
     </script>
 </body>
