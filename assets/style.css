@@ -607,7 +607,7 @@ body {
         }
 
         .spoiler-button:hover {
-            background: #f0f0f0;
+            background: white;
         }
 
         .spoiler-button:active {
