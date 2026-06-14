@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DogNamedSchweppes</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="icon" href="../media/images/ui/favicon.gif">
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/comments.js"></script>
+    <script src="../assets/js/comments-config.js"></script>
+    <script src="../assets/js/loader.js" defer></script>
+</head>
+
+<div class="ebony-body">
+    <center>
+        <div id="header-placeholder"></div>
+
+        <div class="wrapper">
+            <main class="ebony-main">
+                <div class="ebony-arts-page">
+
+                    <div class="text-card" data-i18n="page_fanarts_title">Фанарты</div>
+
+                    <div class="fan-arts-grid">
+                        
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-1.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"сегодня холодно пиздец" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-2.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"Бразилификация" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-3.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"коробкин" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-4.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"малыш" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-5.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"</span><button class="yee-haw-button" onclick="playYeeHaw(event)">yee haw!</button><span>"</span>
+                                <span> от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-6.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"звезда" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                        <div class="fan-art-item">
+                            <img src="../media/images/ebony/art-7.gif" class="ebony-arts" onclick="openLightbox(this.parentElement)">
+                            <div class="fan-arts-text">
+                                <span>"культ" от <a href="https://www.tiktok.com/@literallylois?_r=1&_t=ZS-95G2AHtrxGX" target="_blank">Penny!<img src="../media/images/ui/social-1.gif"></a></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </main>
+        </div>
+
+        <div id="footer-placeholder"></div>
+    </center>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div id="lightbox-text" class="lightbox-description"></div>
+        </div>
+    </div>
+
+    <script>
+        const yeeHawAudio = new Audio('../media/sounds/yee-haw.mp3');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const text = element.querySelector('.fan-arts-text').innerHTML;
+
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-text').innerHTML = text;
+
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function playYeeHaw(event) {
+            event.stopPropagation();
+
+            yeeHawAudio.pause();
+            yeeHawAudio.currentTime = 0;
+            yeeHawAudio.play();
+        }
+
+    </script>
+</div>
+
+</html>

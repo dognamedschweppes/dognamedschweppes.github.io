@@ -7,6 +7,9 @@
     --color-navbar-red: #ff4136;
     --color-navbar-magenta: #ff29f7;
     --color-navbar-purple: #a429ff;
+    --color-navbar-blue-e: #1a81e4;
+    --color-navbar-orange-e: #ff3500;
+    --color-navbar-magenta-e: #ff00e7;
 }
 
 @font-face {
@@ -30,6 +33,12 @@ body {
     margin: 0;
 }
 
+.ebony-body {
+    background: #260000;
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+}
+
 .wrapper {
     display: flex;
     justify-content: center;
@@ -37,6 +46,15 @@ body {
 
 .main {
     background: #c6c6c6;
+    width: 950px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+.ebony-main {
+    background: #5a0000;
     width: 950px;
     display: flex;
     justify-content: center;
@@ -93,6 +111,16 @@ body {
     justify-content: center;
     width: 936px;
     background: white;
+    height: auto;
+    padding-bottom: 14px;
+}
+
+.ebony-arts-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 936px;
+    background: #3d0707;
     height: auto;
     padding-bottom: 14px;
 }
@@ -389,6 +417,15 @@ body {
     object-fit: contain;
 }
 
+.ebony-arts {
+    width: 100%;
+    max-width: 450px;
+    border: 20px solid transparent;
+    border-image: url('../media/images/misc/redlace.gif') 30 round;
+    box-sizing: border-box;
+    object-fit: contain;
+}
+
 .fan-arts-text {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -619,4 +656,9 @@ body {
             margin-top: 14px;
             padding-top: 14px;
             border-top: 3px dashed #c6c6c6;
+        }
+
+        .lace-box {
+            border: 20px solid transparent;
+            border-image: url('../media/images/misc/redlace.gif') 30 round;
         }
