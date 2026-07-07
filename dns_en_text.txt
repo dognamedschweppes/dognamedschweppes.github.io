@@ -1,0 +1,279 @@
+Panel 1
+Command: DogNamedSchweppes 
+Narration: Here's a cool ginger boy in his room. It just so happens that today, July 12, is his birthday. Surprisingly, this cool kid doesn't have a name yet! So what will we call him?  
+
+Panel 2
+Command: Enter name.
+Narration: Take it easy, big guy.
+
+Panel 3
+Command: Try again.
+Narration:
+
+Panel 4
+Command: Examine room.
+Narration: Your name is EGOR. As was previously mentioned, it is your BIRTHDAY. You have absolutely no INTERESTS except for your daily workouts, which you've given up on.  You love COOL sigma MOVIES and TV SERIES. You like to feel like you're the BEST at everything, but THAT'S NOT TRUE.  You don't really like GAMES that much, but sometimes it's okay to play around. What are you going to do next?
+
+Panel 5
+Command: Egor: Examine wolf poster.
+Narration: This poster motivates you to be a cool, lone wolf. No one understands you like he does.  But how can a poster understand anyone? That's a red flag.
+
+Panel 6
+Command: Egor: Examine Berserk poster.
+Narration: One of your alter egos, deep down, you are a BLACK SWORDSMAN. Or just a jerk with a 2-meter stick.
+
+Panel 7
+Command: Egor: Rummage through the trash can.
+Narration: The trash can is completely empty. You could say it's been licked clean. Usually there's a lot of trash in your room, but not now.
+
+Panel 8
+Command: Egor: Examine the dresser.
+Narration: Your PHONE and LIP BALM are on the dresser. Even though you're sigma, who likes it when you lick your chapped lips for the hundredth time? Exactly, no one.
+
+Panel 9
+Command: Egor: Take the lip balm.
+Narration: You place the LIP BALM on one of the CAPTCHALOGUE CARDS in your SYLLADEX. What nonsense?  What cards? Couldn't you just, I don't know, pick it up? Alright... You agree to use these strange cards.  There's no other choice, right? You still have five empty CAPTCHALOGUE CARDS left.
+
+Panel 10
+Command: Egor: Use lip balm.
+Narration: You cannot "Use LIP BALM".  You will have to find five more ARTIFACTS to use it. Your SYLLADEX'S FETCH MODUS is QUEUE right now. Oh come on!
+
+Panel 11
+Command: Egor: Take poster.
+Narration: You successfully place the POSTER in your SYLLADEX.  You wonder what's on it. You need to find a way to hang it on the wall. Your curiosity is off the charts.
+
+Panel 12
+Command: Egor: Take the tape.
+Narration: It's not just TAPE, it's DOUBLE SIDED TAPE. You just don't have a regular TAPE.  Who would have doubted it? Is it really necessary to write the full name of a CAPTCHALOGUED item? Shouldn't it belong to a specific type of item, such as TAPE? So be it.
+
+Panel 13
+Command: Egor: Take the double sided tape.
+Narration: You place DOUBLE SIDED TAPE in your SYLLADEX.
+
+Panel 14
+Command: Egor: Hang a poster on the wall.
+Narration: You still can't use a single item from your SYLLADEX! You're slowly getting used to this nonsense.
+
+Panel 15
+Command: Egor: Stick your fingers in a power outlet.
+Narration: You're not sure your fingers will fit in the holes.  But for the sake of common sense, you won't do it. For now...
+
+Panel 16
+Command: Egor: Examine Fight Club poster.
+Narration: What is this?  This... is chemical burn. It'll hurt more than you've ever been burned, and you will have a scar. You once had a burn, not chemical, but on your hand. One of your favorite movies. Sometimes, when chatting with your friends, you become Tyler, you give them stupid tasks that they most likely won't do, but there's hope.
+
+Panel 17
+Command: Egor: Examine Fast And Furious poster.
+Narration: Nothing stronger than family. It's a good movie, nothing more to say.
+
+Panel 18
+Command: Egor: Examine the laptop.
+Narration: This laptop was a gift from your good friend SI.  He probably spent a lot on it. At one point, you wanted to erase the inscription, but you just gave up on it.
+
+Panel 19
+Command: Egor: Look out the window.
+Narration: From the window, you can see the beautiful sky.  Today it is brighter than usual. It would be nice to go for a walk at this time. Nothing can spoil this day.
+
+Panel 20
+Command: ≡>
+Narration: In the distance, you see a drone flying toward you. At sufficient speed, it could break a window. It appears to be traveling at full speed. You must act quickly.
+
+Panel 21
+Command: Egor: Act quickly.
+Narration: Cool tricks.
+
+Panel 22
+Command: Egor: Examine the floor.
+Narration: A broken drone, a mysterious blue box, and debris lie on the floor. How did the drone and this box even fit through such a small window?
+
+Panel 23
+Command: Egor: Examine the window.
+Narration: Nothing special. Just a fucking broken window in your sweet little room. The main thing is that your DAD doesn't find out what happened.  It'll be hard to explain. Although he probably won't care.
+
+Panel 24
+Command: Egor: Examine Riddick poster.
+Narration: To be honest, you haven't seen this movie.  What a SHAME. Maybe someday in the future that will change. All you know is that your DAD watched it.
+
+Panel 25
+Command: Egor: Examine the box.
+Narration: It's just a regular blue box. It looks great for a box that went through a window.
+
+Panel 26
+Command: Egor: Examine the note on the box.
+Narration: Looks like a gift from one of your friends - specifically from BH. The deciphering of all those Strange Double Nickname Symbols - the ones that mark the first letters of a nickname in that thing for messaging called a "phone" - has long since been forgotten by you. Apparently, FD stands for your SDNS. FriendlyDunce?  FunkyDruid? ForgetfulDude? Either way, you'll have to uncover this mystery yourself. Wouldn't it be easier to just use normal names when talking to someone? Interesting. WHAT DID OUR AWESOME BRO PREPARE?!?!!? That phrase isn't the first time it's flashed through your mind at the sight of a mysterious box.
+
+Panel 27
+Command: Egor: Pick up the box.
+Narration: The BOX has been placed in your SYLLADEX. You still have two empty CAPTCHALOGUE CARDS left. So let's hurry up and fill them with some useless junk!
+
+Panel 28
+Command: Egor: Pick up the shard.
+Narration: The SHARD has been placed in your SYLLADEX. You gotta be careful with this. Nobody wants to get hurt; we're such delicate flowers, after all.
+
+Panel 29
+Command: Egor: Move to the door like a ninja without stepping on the shards.
+Narration: You skillfully perform your dark ninja teleportation maneuver without touching a single shard. Many would envy such skills. Damn, you're one hell of a virtuoso!
+
+Panel 30
+Command: Egor: Enter the living room
+Narration: Having passed all the "trials," you enter the living room.  Its interior vaguely resembles your own room. Yours is still better, you said to yourself. But still, there's something kinda vintage about this room...
+
+Panel 31
+Command: Egor: Pick up the butterfly knife.
+Narration: The BUTTERFLY KNIFE has been placed in your SYLLADEX. In the future, it can be placed in your STRIFE DECK! That already sounds way better than "shitalogue" doesn't it?
+
+Panel 32
+Command: Egor: Use the lip balm.
+Narration: You cover your dry, dehydrated lips with this splendid artifact. It's strawberry, you think, it just smells... delicious...
+
+Panel 33
+Command: JASON STATHAM IS WATCHING YOU DON'T LET HIM RUIN THIS MOMENT
+Narration: Posters have no eyes, you dork!  At least maybe they don't... Stop screwing around and find something useful to do! That line from "Crank: High Voltage" still echoes through your head though, even though the context there is entirely different. Fucking animal abusers.
+
+Panel 34
+Command: Egor: Pick up the hat.
+Narration: The HAT has been placed into your SYLLADEX. Your LIP BALM gets launched out like a bullet. That was close.
+
+Panel 35
+Command: Egor: Use two sided tape on poster.
+Narration: You use the TWO SIDED TAPE card on the POSTER card. So where are we at?
+
+Panel 36
+Command: Egor: Head back into your room and tape poster to wall.
+Narration: You use the TWO SIDED TAPE and POSTER on the blank space on the wall. This is your favorite movie.  Drive. Sometimes you're Ryan Gosling. Or always. Not a bad gift from your DAD, not a bad one.
+
+Panel 37
+Command: Egor: Go back into the living room.
+Narration: You go back into the living room.  Everything's in place, you think. But maybe something ran away while you were hanging up your poster?
+
+Panel 38
+Command: THE LIP BALM IS GONE. GO FIND THE LIP BALM. 
+Narration: The lip balm's not on the floor anymore. It's not here.  Lip balm isn't here, lip balm went away, it's gone. Maybe it's in the bucket, you gotta check.
+
+Panel 39
+Command: Egor: Look inside the bucket.
+Narration: Your assumptions were right.  Nothing can hide from your eyes. Nothing to worry about anymore, rookie. Pull yourself together, you sucker!
+
+Panel 40
+Command: Egor: Examine mug.
+Narration: That's your DAD'S mug. It looks funny. Maybe even batshit insane.
+
+Panel 41
+Command: Egor: Pick up the mug.
+Narration: The MUG has been placed in your SYLLADEX. Try not to break it. Easy enough!
+
+Panel 42
+Command: Egor: Take a nice big dump on the table and smear it all over the TV.
+Narration: A really stupid idea!  You're definitely not going to do that. One of those truly dumb ideas. A MID-TIER one, you could say.
+
+Panel 43
+Command: Egor: Gracefully jump over the table.
+Narration: You don't land very gracefully — right on your back. It hurts, but it's bearable. Telling yourself you don't care about the pain makes it fade a little. Just a bruise.
+
+Panel 44
+Command: Egor: Get up.
+Narration: You think you should lie down a bit longer to pull yourself together after that jump. A simple fall threw you off balance. You didn't expect that.
+
+Panel 45
+Command: Egor: Get up and go to the kitchen.
+Narration: After a short rest, you stand up. Now you're in the other part of the room — the kitchen.
+
+Panel 46
+Command: Egor: Pick up the dart.
+Narration: The DART has been placed in your SYLLADEX. You could play darts if the opportunity comes up. If you even know how, which you doubt.
+
+Panel 47
+Command: Egor: Play darts.
+Narration: Again, you can't USE the DART CARD because your FETCH MODUS is QUEUE. Besides, you don't know how to play darts at all. You desperately need an ARRAY FETCH MODUS or something better than QUEUE to pull off some crazy stuff.
+
+Panel 48
+Command: Egor: Open the box with a glass shard.
+Narration: No!  You don't want to cut yourself or something worse. But the STRANGE BLUE BOX keeps calling to you. You decide to do it later, in a safer way. You weak little TUBE, that's what you are. What a BORE.
+
+Panel 49
+Command: Egor: Examine the calendar.
+Narration: You're not mistaken. Today is definitely your Birthday. But where's the year?
+
+Panel 50
+Command: Egor: Pick up the candy.
+Narration: It's your stash of those sour, tasty candies. You notice someone's shamelessly stolen the PINEAPPLE SOURIE from your SOURIES STASH. The thief could be anyone — even you from the past. Maybe you ate one while SLEEPWALKING, but you've never sleepwalked.
+
+Panel 51
+Command: ≡>
+Narration: A trio of SOURIES has been placed in your SYLLADEX.  The box shoots out with a whistle. You hope there wasn't anything fragile in there. Maybe it was your grandma's old tea set?  What are the odds of that? And why would you even need it anyway? Since you didn't hear any glass breaking, that theory's off the table.
+
+Panel 52
+Command: Egor: Wonder why the hell the bag of chips is gray.
+Narration: You seriously have no idea why.  Your head instantly fills with obsessive thoughts about it. Another everyday mystery of mankind.
+
+Panel 53
+Command: Egor: Pick up the blue box again.
+Narration: Damn, you're a sniper!  Right at 20! That deserves a round of applause — standing or sitting, for those who can't stand up. Just imagine if it had flown straight into your head. Luck's on your side today, walking target.
+
+Panel 54
+Command: Egor: Take the dart.
+Narration: The CAPTCHALOGUED DART triggered the BUTTERFLY KNIFE to eject. Right in the bullseye! So this shitalogue system can be used for self-defense too. Gotta keep that in mind.
+
+Panel 55
+Command: Egor: Put on the hat.
+Narration: You carefully place your DAD'S HAT on your greasy, unwashed head, more as an ACCESSORY than for PROTECTION — no point wasting cards on that for now. It increases your height by 26.6% and gives +0.2 charisma points, which you already have more than enough of anyway. Still, it feels like something's missing from this hat.  Some kind of attributes. Whatever, screw it.
+
+Panel 56
+Command: Egor: Reacquire the butterfly knife.
+Narration: The BUTTERFLY KNIFE has been successfully placed in your SYLLADEX. Well, here you are again. The weapon of a maniac.
+
+Panel 57
+Command: Egor: Open the kitchen cabinet.
+Narration: Inside the cabinet — like in any kitchen cabinet — there's a TRASH CAN (currently behind the second door), a bunch of CLEANING SUPPLIES, and a handful of STINKY RAGS. And also a huge chunk of that HOUSEHOLD SOAP you hate so much.  Seriously, for some reason, you really do hate it. A complete inventory of items for all occasions, you could say! Well, almost.
+
+Panel 58
+Command: Egor: Pick up the household soap.
+Narration: You had ONE job, but as always, everything goes to shit. Goodbye, silly little mug.
+
+Panel 59
+Command: Egor: Take a break. Play some darts. 
+Narration: You're not in the mood for darts after what just happened. A BLUEBERRY SOURIE could've brightened up your gray everyday life in this black-and-white abstract behavioral space you call home.  
+
+Panel 60
+Command: Egor: Seize the sweet giant known as the cake.
+Narration: You don't think you can eat it all.  Maybe you'll just take a bite. The DART flies out and hits the HAT straight on. Damn it!  Another one of DAD'S artifacts ruined!!! Anyway, if anyone asks, you can call it a style choice.  Or a design decision. As if you look like the kind of guy who wears designer clothes, you FARMBOY!
+
+Panel 61
+Command: Egor: Feel like a freaking Jackie Chan. Toss the candy. 
+Narration:  
+
+Panel 62
+Command: ≡>
+Narration:
+
+Panel 63
+Command: ≡>
+Narration: Oh.
+
+Panel 64
+Command: ≡>
+Narration: Shit.
+
+Panel 65
+Command: Egor: Reflect on what just happened.
+Narration: Another so-called cool trick didn't work out for you. What nonsense, dude.  Stop wasting time on this crap. Stop trying to control everything and just let go…
+
+Panel 66
+Command: Egor: Change perspective.
+Narration: The rest of the kitchen unfolds before you — the part you couldn't see because of this world's weird perspective. Well, you could see it, but the ones on THE OTHER SIDE couldn't. On this side, there's the entrance to your DAD'S ROOM and a poster.
+
+Panel 67
+Command: Egor: Turn the U into an A.
+Narration: Pretty clever, but you don't think your DAD would appreciate the joke — though who knows. Besides, you don't have a marker or any other artifact you could use for it.
+
+Panel 68
+Command: Egor: Write the A with your own blood. 
+Narration: You're not doing that. No stupid thoughts! …Well, maybe just a little. Do people even exist who don't think about dumb, absurd stuff like you do? Oh right, you're not exactly people. That explains it.
+
+Panel 69
+Command: Egor: Become a fire fairy from Winx at home.
+Narration: We literally just talked about this! Can you even go ten minutes without thinking about weird crap? Oh well, that's who you are.  That's your charm. Someone out there probably loves you for it.
+
+Panel 70
+Command: Egor: Examine the Kitchen poster.
+Narration: How ironic.  A Kitchen poster in the kitchen. Your DAD sure knows his stuff.  You underestimated him, even though you've always tried to be like him. Good show.  You know one of your BROS watched the whole thing. And really, who hasn't?
