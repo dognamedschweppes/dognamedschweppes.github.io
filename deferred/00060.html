@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DogNamedSchweppes</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="icon" href="../media/images/ui/favicon.gif">
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/comments.js"></script>
+    <script src="../assets/js/comments-config.js"></script>
+    <script src="../assets/js/loader.js" defer></script>
+</head>
+<body>
+    <center>
+        <div id="header-placeholder"></div>
+        <div class="wrapper">
+            <main class="main">
+                <div class="page">
+                    <div class="text-card" data-i18n="page_00060_title">Заголовок</div>
+                    <div class="panel-container">
+                        <img src="../media/images/panels/ru/XXXXX.gif" class="panel" data-i18n-img="00060">
+                    </div>
+                    <div class="text">
+                        <span data-i18n="page_00060_text">Текст</span>
+                    </div>
+                    <div class="nav">
+                        <span>> </span><a href="00061" data-i18n="page_00060_link">Ссылка</a>
+                    </div>
+                    <div class="data-button">
+                        <span>
+                            <a href="00001" data-i18n="nav_start">Сначала</a> |
+                            <a href="00059" data-i18n="nav_back">Назад</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" onclick="saveGame(); return false;" data-i18n="save_game">Сохранить игру</a>
+                            <div class="tooltip">(?)
+                                <span class="tooltiptext">
+                                    <div class="tooltip-text" data-i18n="save_tooltip">...</div>
+                                </span>
+                            </div> |
+                            <a href="#" id="autosave-text" onclick="toggleAutosave(); return false;" data-i18n="autosave">Автосохранение!</a>
+                            <div class="tooltip">
+                                (<span id="autosave-icon">?</span>)
+                                <span class="tooltiptext">
+                                    <div class="tooltip-text" data-i18n="autosave_tooltip">...</div>
+                                </span>
+                            </div> |
+                            <a href="#" onclick="loadGame(); return false;" data-i18n="load_game">Загрузить игру</a> |
+                            <a href="#" onclick="deleteSave(); return false;" data-i18n="delete_game">Удалить игру</a>
+                        </span>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="footer-placeholder"></div>
+    </center>
+</body>
+</html>
