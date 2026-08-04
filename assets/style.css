@@ -541,7 +541,8 @@ body {
     font-size: 14px;
     font-weight: bold;
     padding: 7px;
-    border: 3px inset #c6c6c6;
+    border: 3px solid;
+    border-color: #767676 #c6c6c6 #c6c6c6 #767676; /* тёмные верх/лево, светлые право/низ */
     background: white;
 }
 
