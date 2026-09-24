@@ -1,4 +1,4 @@
-const SUPABASE_CONFIG = {
+const SUPABASE_CONFIG = Object.freeze({
     url: 'https://bmkpaqmzbwyeqvnolzji.supabase.co',
     key: 'sb_publishable_aRLUFg0oyQ764ryaNBjKBg_Nn4nhjR1'
-};
+});

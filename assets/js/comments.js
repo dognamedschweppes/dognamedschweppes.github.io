@@ -2,50 +2,61 @@ class CommentsSystem {
     constructor(supabaseUrl, supabaseKey) {
         this.supabaseUrl = supabaseUrl;
         this.supabaseKey = supabaseKey;
+        this.endpoint = `${supabaseUrl}/rest/v1/comments`;
+    }
+
+    async request(path = '', options = {}) {
+        const headers = {
+            apikey: this.supabaseKey,
+            Authorization: `Bearer ${this.supabaseKey}`,
+            ...options.headers,
+        };
+
+        try {
+            const response = await fetch(`${this.endpoint}${path}`, {
+                ...options,
+                headers,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            return response;
+        } catch (error) {
+            console.error('Ошибка запроса к Supabase:', error);
+            throw error;
+        }
     }
 
     async getComments() {
         try {
-            const response = await fetch(`${this.supabaseUrl}/rest/v1/comments?order=created_at.desc`, {
-                headers: {
-                    'apikey': this.supabaseKey,
-                    'Authorization': `Bearer ${this.supabaseKey}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
+            const response = await this.request('?order=created_at.desc');
             return await response.json();
-        } catch (error) {
-            console.error('Ошибка загрузки комментариев:', error);
+        } catch {
             return [];
         }
     }
 
     async addComment(page, author, text, link) {
         try {
-            const response = await fetch(`${this.supabaseUrl}/rest/v1/comments`, {
+            await this.request('', {
                 method: 'POST',
                 headers: {
-                    'apikey': this.supabaseKey,
-                    'Authorization': `Bearer ${this.supabaseKey}`,
                     'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
+                    Prefer: 'return=minimal',
                 },
                 body: JSON.stringify({
-                    page: page,
-                    author: author,
-                    text: text,
+                    page,
+                    author,
+                    text,
                     link: link || null,
-                    created_at: new Date().toISOString()
-                })
+                    created_at: new Date().toISOString(),
+                }),
             });
 
-            return response.ok;
-        } catch (error) {
-            console.error('Ошибка добавления комментария:', error);
+            return true;
+        } catch {
             return false;
         }
     }
@@ -59,8 +70,8 @@ class CommentsUI {
     }
 
     getCurrentPage() {
-        const path = window.location.pathname.split("/").pop().replace(".html", "");
-        return path || "index";
+        const page = window.location.pathname.split('/').pop()?.replace(/\.html$/i, '');
+        return page || 'index';
     }
 
     async render() {
@@ -70,91 +81,169 @@ class CommentsUI {
         }
 
         const comments = await this.system.getComments();
+        this.container.innerHTML = this.renderLayout(comments.length);
 
-        const html = `
-            <div class="comments-header" >
-                <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span> <br>(${comments.length})</br>
+        const button = this.container.querySelector('.comments-button');
+        button?.addEventListener('click', () => this.submitComment());
+
+        const list = this.container.querySelector('.comments-list');
+
+        if (list) {
+            comments.forEach(comment => {
+                list.appendChild(this.createCommentElement(comment));
+            });
+        }
+
+        this.applyTranslations();
+    }
+
+    renderLayout(commentsCount) {
+        return `
+            <div class="comments-header">
+                <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span><br>
+                <span class="comments-count">(${commentsCount})</span>
             </div>
 
             <div class="comments-form">
                 <input type="text" id="comment-author" data-i18n-placeholder="comment_name_placeholder" placeholder="Имя" maxlength="30" required>
                 <textarea id="comment-link" data-i18n-placeholder="comment_link_placeholder" placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
                 <textarea id="comment-text" data-i18n-placeholder="comment_text_placeholder" placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
-                <button onclick="commentsUI.submitComment()" class="comments-button">
+                <button type="button" class="comments-button">
                     <span data-i18n="comments_submit">Отправить</span>
                 </button>
             </div>
 
-            <div class="comments-list">
-                ${comments.map(c => this.renderComment(c)).join('')}
-            </div>
+            <div class="comments-list"></div>
         `;
-
-        this.container.innerHTML = html;
     }
 
-    renderComment(comment) {
-        const date = new Date(comment.created_at).toLocaleString('ru-RU', {
+    createCommentElement(comment) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'comment';
+
+        const header = document.createElement('div');
+        header.className = 'comment-header';
+
+        const author = comment.link
+            ? this.createLink(comment.author, comment.link, 'comment-author-link', { external: true })
+            : this.createElement('span', comment.author, 'comment-author');
+
+        const meta = document.createElement('span');
+        meta.className = 'comment-meta';
+
+        const pageLink = this.createLink(comment.page, `${comment.page}.html`, 'comment-page-link');
+        const date = this.createElement('div', this.formatDate(comment.created_at), 'comment-date');
+
+        meta.append(pageLink, ' ', date);
+        header.append(author, ' ', meta);
+
+        const text = this.createElement('div', comment.text, 'comment-text');
+
+        wrapper.append(header, text);
+        return wrapper;
+    }
+
+    createElement(tag, text, className) {
+        const element = document.createElement(tag);
+
+        if (className) {
+            element.className = className;
+        }
+
+        element.textContent = text;
+        return element;
+    }
+
+    createLink(text, href, className, { external = false } = {}) {
+        const link = this.createElement('a', text, className);
+        link.href = href;
+
+        if (external) {
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+        }
+
+        return link;
+    }
+
+    formatDate(value) {
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return '';
+        }
+
+        return date.toLocaleString('ru-RU', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
         });
-
-        const authorHtml = comment.link
-            ? `<a href="${this.escapeHtml(comment.link)}" class="comment-author-link" target="_blank" rel="noopener noreferrer">${this.escapeHtml(comment.author)}</a>`
-            : `<span class="comment-author">${this.escapeHtml(comment.author)}</span>`;
-
-        return `
-            <div class="comment">
-                <div class="comment-header">
-                    ${authorHtml}
-                    <span class="comment-meta">
-                        <a href="${comment.page}.html" class="comment-page-link">${comment.page}</a> <div class="comment-date">${date}</div>
-                    </span>
-                </div>
-                <div class="comment-text">${this.escapeHtml(comment.text)}</div>
-            </div>
-        `;
     }
 
     async submitComment() {
-        const author = document.getElementById('comment-author').value.trim();
-        const link = document.getElementById('comment-link').value.trim();
-        const text = document.getElementById('comment-text').value.trim();
+        const authorInput = this.container.querySelector('#comment-author');
+        const linkInput = this.container.querySelector('#comment-link');
+        const textInput = this.container.querySelector('#comment-text');
 
-        if (!author) {
-            alert('Введи имя!');
-            return;
-        }
+        if (!authorInput || !linkInput || !textInput) return;
 
-        if (!text) {
-            alert('Напиши что-нибудь!');
-            return;
-        }
+        const author = authorInput.value.trim();
+        const link = linkInput.value.trim();
+        const text = textInput.value.trim();
 
-        if (text.length < 2) {
-            alert('Слишком короткий комментарий!');
+        const validationError = this.validateComment(author, text);
+        if (validationError) {
+            alert(validationError);
             return;
         }
 
         const success = await this.system.addComment(this.currentPage, author, text, link);
 
-        if (success) {
-            document.getElementById('comment-author').value = '';
-            document.getElementById('comment-link').value = '';
-            document.getElementById('comment-text').value = '';
-            await this.render();
-        } else {
+        if (!success) {
             alert('Ошибка при отправке комментария!');
+            return;
         }
+
+        const list = this.container.querySelector('.comments-list');
+
+        if (list) {
+            list.prepend(this.createCommentElement({
+                page: this.currentPage,
+                author,
+                text,
+                link: link || null,
+                created_at: new Date().toISOString(),
+            }));
+
+            this.updateCount(1);
+        }
+
+        authorInput.value = '';
+        linkInput.value = '';
+        textInput.value = '';
     }
 
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+    validateComment(author, text) {
+        if (!author) return 'Введи имя!';
+        if (!text) return 'Напиши что-нибудь!';
+        if (text.length < 2) return 'Слишком короткий комментарий!';
+        return null;
+    }
+
+    updateCount(delta) {
+        const countElement = this.container.querySelector('.comments-count');
+        if (!countElement) return;
+
+        const current = Number.parseInt(countElement.textContent.replace(/\D/g, ''), 10) || 0;
+        countElement.textContent = `(${current + delta})`;
+    }
+
+    applyTranslations() {
+        if (typeof updatePageLanguage === 'function') {
+            updatePageLanguage();
+        }
     }
 }
 
