@@ -4,87 +4,55 @@ const STORAGE_KEYS = {
     autosave: 'schweppes_autosave',
 };
 
-const AUTOSAVE_ICON = {
-    on: '✓',
-    off: '?',
-};
+const AUTOSAVE_ICON = { on: '✓', off: '?' };
 
-async function fetchText(file) {
-    const response = await fetch(file);
+let autosaveEnabled = localStorage.getItem(STORAGE_KEYS.autosaveStatus) === 'on';
 
-    if (!response.ok) {
-        throw new Error(`Не удалось загрузить ${file}: ${response.status} ${response.statusText}`);
-    }
+function getCurrentPage() {
+    return window.location.pathname.split('/').pop()?.replace(/\.html$/i, '') || 'index';
+}
 
+async function fetchText(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to load ${url}: ${response.status}`);
     return response.text();
 }
 
-function runInlineScripts(container) {
-    const scripts = Array.from(container.querySelectorAll('script:not([src])'));
-
-    scripts.forEach(oldScript => {
-        const newScript = document.createElement('script');
-
-        Array.from(oldScript.attributes).forEach(attr => {
-            newScript.setAttribute(attr.name, attr.value);
-        });
-
-        newScript.textContent = oldScript.textContent;
-        oldScript.replaceWith(newScript);
+// innerHTML doesn't execute <script> tags, so swap them for fresh nodes.
+function activateInlineScripts(container) {
+    container.querySelectorAll('script:not([src])').forEach(oldScript => {
+        const fresh = document.createElement('script');
+        for (const { name, value } of [...oldScript.attributes]) {
+            fresh.setAttribute(name, value);
+        }
+        fresh.textContent = oldScript.textContent;
+        oldScript.replaceWith(fresh);
     });
 }
 
-async function loadComponent(id, file) {
+async function loadComponent(id, url) {
     const target = document.getElementById(id);
     if (!target) return;
 
     try {
-        target.innerHTML = await fetchText(file);
+        target.innerHTML = await fetchText(url);
     } catch (error) {
         console.error(error);
         return;
     }
 
-    if (id === 'footer-placeholder') {
-        runInlineScripts(target);
-
-        if (typeof updatePageLanguage === 'function') {
-            updatePageLanguage();
-        }
-
-        if (typeof initComments === 'function' && typeof SUPABASE_CONFIG !== 'undefined') {
-            const container = document.getElementById('comments-container');
-
-            if (container) {
-                console.log('Инициализация комментариев...');
-                initComments(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
-            }
-        }
-    }
-
-    if (document.getElementById('autosave-icon')) {
-        updateAutosaveUI();
-    }
+    activateInlineScripts(target);
 }
 
-function getCurrentPage() {
-    const page = window.location.pathname.split('/').pop()?.replace(/\.html$/i, '');
-    return page || 'index';
-}
-
-let isAutosaveEnabled = localStorage.getItem(STORAGE_KEYS.autosaveStatus) === 'on';
-
-function updateAutosaveUI() {
+function renderAutosaveIcon() {
     const icon = document.getElementById('autosave-icon');
-    if (!icon) return;
-
-    icon.textContent = isAutosaveEnabled ? AUTOSAVE_ICON.on : AUTOSAVE_ICON.off;
+    if (icon) icon.textContent = autosaveEnabled ? AUTOSAVE_ICON.on : AUTOSAVE_ICON.off;
 }
 
 function toggleAutosave() {
-    isAutosaveEnabled = !isAutosaveEnabled;
-    localStorage.setItem(STORAGE_KEYS.autosaveStatus, isAutosaveEnabled ? 'on' : 'off');
-    updateAutosaveUI();
+    autosaveEnabled = !autosaveEnabled;
+    localStorage.setItem(STORAGE_KEYS.autosaveStatus, autosaveEnabled ? 'on' : 'off');
+    renderAutosaveIcon();
 }
 
 function saveGame() {
@@ -93,36 +61,45 @@ function saveGame() {
     alert(`Игра сохранена вручную: ${page}`);
 }
 
-const currentPage = getCurrentPage();
-
-if (currentPage !== 'index' && isAutosaveEnabled) {
-    localStorage.setItem(STORAGE_KEYS.autosave, currentPage);
-}
-
 function loadGame() {
-    const manual = localStorage.getItem(STORAGE_KEYS.manualSave);
-    const auto = localStorage.getItem(STORAGE_KEYS.autosave);
-    const targetPage = manual || auto;
+    const page =
+        localStorage.getItem(STORAGE_KEYS.manualSave) ||
+        localStorage.getItem(STORAGE_KEYS.autosave);
 
-    if (targetPage && targetPage !== 'index') {
-        window.location.href = `${targetPage}.html`;
-    } else {
+    if (!page || page === 'index') {
         alert('Сохранений не найдено!');
+        return;
     }
+    window.location.href = `${page}.html`;
 }
 
 function deleteSave() {
     if (!confirm('Удалить все данные игры?')) return;
 
-    Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+    for (const key of Object.values(STORAGE_KEYS)) {
+        localStorage.removeItem(key);
+    }
     location.reload();
 }
 
 async function initApp() {
+    const currentPage = getCurrentPage();
+
+    if (currentPage !== 'index' && autosaveEnabled) {
+        localStorage.setItem(STORAGE_KEYS.autosave, currentPage);
+    }
+
     await Promise.all([
         loadComponent('header-placeholder', 'header.html'),
         loadComponent('footer-placeholder', 'footer.html'),
     ]);
+
+    renderAutosaveIcon();
+    applyTranslations();
+
+    if (typeof SUPABASE_CONFIG !== 'undefined') {
+        initComments(SUPABASE_CONFIG);
+    }
 }
 
 if (document.readyState === 'loading') {

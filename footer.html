@@ -49,14 +49,13 @@
         </div>
     </div>
     <script>
-        window.updateNews = function() {
-            const lang = localStorage.getItem('language') || 'ru';
-            const newsImg = document.getElementById('news-img');
-            if (newsImg) {
-                newsImg.src = `../media/images/ui/${lang}/news.gif`;
-            }
+        function updateNewsImage() {
+            const lang = getCurrentLanguage();
+            const img = document.getElementById('news-img');
+            if (img) img.src = `../media/images/ui/${lang}/news.gif`;
         }
-        updateNews();
+        document.addEventListener('languagechange', updateNewsImage);
+        updateNewsImage();
     </script>
     <div class="comments-page">
         <div id="comments-container"></div>

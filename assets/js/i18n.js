@@ -469,62 +469,39 @@ function getCurrentLanguage() {
 
 function setLanguage(lang) {
     localStorage.setItem('language', lang);
-    updatePageLanguage();
-}
-
-function updatePageLanguage() {
-    const lang = getCurrentLanguage();
-    const t = translations[lang];
-
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (t[key]) {
-            if (element.tagName === 'A' || element.tagName === 'SPAN' || element.tagName === 'DIV') {
-                element.textContent = t[key];
-            }
-        }
-    });
-
-    document.querySelectorAll('[data-i18n-html]').forEach(element => {
-        const key = element.getAttribute('data-i18n-html');
-        if (t[key]) {
-            element.innerHTML = t[key];
-        }
-    });
-
-    document.querySelectorAll('[data-i18n-img]').forEach(img => {
-        const panelId = img.getAttribute('data-i18n-img');
-        img.src = `../media/images/panels/${lang}/${panelId}.gif`;
-    });
-
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-        const key = element.getAttribute('data-i18n-placeholder');
-        if (t[key]) {
-            element.placeholder = t[key];
-        }
-    });
-
-    updateLanguageSwitcher();
-
-    if (window.updateNews) {
-        window.updateNews();
-    }
-}
-
-function updateLanguageSwitcher() {
-    const lang = getCurrentLanguage();
-    const switcher = document.getElementById('lang-switcher');
-    if (switcher) {
-        switcher.textContent = lang.toUpperCase();
-    }
+    applyTranslations(lang);
+    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
 }
 
 function toggleLanguage() {
-    const currentLang = getCurrentLanguage();
-    const newLang = currentLang === 'ru' ? 'en' : 'ru';
-    setLanguage(newLang);
+    setLanguage(getCurrentLanguage() === 'ru' ? 'en' : 'ru');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    updatePageLanguage();
-});
+function applyTranslations(lang = getCurrentLanguage()) {
+    const dict = translations[lang];
+    if (!dict) return;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const value = dict[el.dataset.i18n];
+        if (value !== undefined) el.textContent = value;
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const value = dict[el.dataset.i18nHtml];
+        if (value !== undefined) el.innerHTML = value;
+    });
+
+    document.querySelectorAll('[data-i18n-img]').forEach(img => {
+        img.src = `../media/images/panels/${lang}/${img.dataset.i18nImg}.gif`;
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const value = dict[el.dataset.i18nPlaceholder];
+        if (value !== undefined) el.placeholder = value;
+    });
+
+    const switcher = document.getElementById('lang-switcher');
+    if (switcher) switcher.textContent = lang.toUpperCase();
+}
+
+document.addEventListener('DOMContentLoaded', () => applyTranslations());
