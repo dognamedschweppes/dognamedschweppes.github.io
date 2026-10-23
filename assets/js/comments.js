@@ -1,52 +1,123 @@
-let commentsConfig = null;
-let commentsContainer = null;
+/* =========================================================================
+   Comments widget — Supabase + vanilla JS
+   =========================================================================
+   Responsibilities:
+     - fetch a limited feed of recent comments
+     - render form + list into #comments-container
+     - validate input on submit, then POST and prepend the server's row
+   ========================================================================= */
 
-function getCurrentPage() {
-    return window.location.pathname.split('/').pop()?.replace(/\.html$/i, '') || 'index';
+const COMMENTS_PAGE_SIZE = 100;
+
+const COMMENT_LIMITS = {
+    author: 30,
+    body:   500,
+    link:   200,
+};
+
+// null until initComments(config) is called.
+let apiConfig = null;
+let rootEl = null;
+
+/* ---------- HTTP ------------------------------------------------------- */
+
+async function request(path, init = {}) {
+    const response = await fetch(`${apiConfig.url}/rest/v1${path}`, {
+        ...init,
+        headers: {
+            apikey: apiConfig.key,
+            Authorization: `Bearer ${apiConfig.key}`,
+            ...(init.headers || {}),
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Supabase ${response.status} ${response.statusText}`);
+    }
+
+    // Supabase returns 204 for "no content", and 201 with an array
+    // when `Prefer: return=representation` is set.
+    if (response.status === 204) return null;
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
 }
 
-function authHeaders() {
-    return {
-        apikey: commentsConfig.key,
-        Authorization: `Bearer ${commentsConfig.key}`,
-    };
+function fetchComments() {
+    const query = new URLSearchParams({
+        select:  'id,page,author,body,link,created_at',
+        order:   'created_at.desc',
+        limit:   String(COMMENTS_PAGE_SIZE),
+    });
+    return request(`/comments?${query}`);
 }
 
-async function fetchComments() {
-    const response = await fetch(
-        `${commentsConfig.url}/rest/v1/comments?order=created_at.desc`,
-        { headers: authHeaders() }
-    );
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return response.json();
-}
-
-async function postComment({ page, author, text, link }) {
-    const response = await fetch(`${commentsConfig.url}/rest/v1/comments`, {
+async function createComment(payload) {
+    const rows = await request('/comments', {
         method: 'POST',
         headers: {
-            ...authHeaders(),
             'Content-Type': 'application/json',
-            Prefer: 'return=minimal',
+            Prefer: 'return=representation',
         },
-        body: JSON.stringify({ page, author, text, link: link || null }),
+        body: JSON.stringify(payload),
     });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return rows?.[0] ?? null;
 }
 
-function formatCommentDate(iso) {
+/* ---------- Validation ------------------------------------------------- */
+
+function validateComment({ author, body }) {
+    if (!author)                            return 'comment_error_name_required';
+    if (author.length > COMMENT_LIMITS.author) return 'comment_error_name_too_long';
+    if (!body)                              return 'comment_error_text_required';
+    if (body.length < 2)                    return 'comment_error_text_too_short';
+    if (body.length > COMMENT_LIMITS.body)  return 'comment_error_text_too_long';
+    return null;
+}
+
+// Returns a valid absolute URL string or null.
+// Accepts "example.com", auto-prefixes https://, and refuses
+// non-http(s) schemes (this is what stops `javascript:` XSS via href).
+// Returns a valid absolute URL, a mailto: link, or null.
+function normalizeLink(raw) {
+    const trimmed = raw.trim();
+    if (!trimmed) return null;
+    if (trimmed.length > COMMENT_LIMITS.link) return null;
+
+    // Is it an email?
+    if (trimmed.includes('@') && !trimmed.includes('/')) {
+        // Simple check to ensure it's somewhat valid
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(trimmed) ? `mailto:${trimmed}` : null;
+    }
+
+    // Otherwise, treat it as a URL
+    const candidate = /^https?:\/\//i.test(trimmed)
+        ? trimmed
+        : `https://${trimmed}`;
+
+    try {
+        const url = new URL(candidate);
+        return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
+    } catch {
+        return null;
+    }
+}
+
+/* ---------- Rendering -------------------------------------------------- */
+
+function formatDate(iso) {
     const date = new Date(iso);
     if (Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString(getCurrentLanguage(), {
-        day: '2-digit',
+        day:   '2-digit',
         month: '2-digit',
-        year: 'numeric',
+        year:  'numeric',
     });
 }
 
-function buildCommentElement(comment) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'comment';
+function buildComment(comment) {
+    const el = document.createElement('div');
+    el.className = 'comment';
 
     const header = document.createElement('div');
     header.className = 'comment-header';
@@ -60,127 +131,177 @@ function buildCommentElement(comment) {
         author.rel = 'noopener noreferrer';
     }
 
-    const meta = document.createElement('span');
-    meta.className = 'comment-meta';
-
     const pageLink = document.createElement('a');
-    pageLink.href = `${comment.page}.html`;
     pageLink.className = 'comment-page-link';
+    pageLink.href = `${comment.page}.html`;
     pageLink.textContent = comment.page;
 
     const date = document.createElement('div');
     date.className = 'comment-date';
-    date.textContent = formatCommentDate(comment.created_at);
+    date.textContent = formatDate(comment.created_at);
 
+    const meta = document.createElement('div');
+    meta.className = 'comment-meta';
     meta.append(pageLink, ' ', date);
+
     header.append(author, ' ', meta);
 
-    const text = document.createElement('div');
-    text.className = 'comment-text';
-    text.textContent = comment.text;
+    const body = document.createElement('div');
+    body.className = 'comment-text';
+    body.textContent = comment.body;
 
-    wrapper.append(header, text);
-    return wrapper;
+    el.append(header, body);
+    return el;
 }
 
-function renderCommentsLayout(count) {
-    return `
+function buildShell(commentCount) {
+    const shell = document.createElement('div');
+    shell.innerHTML = `
         <div class="comments-header">
             <span data-i18n="comments_title">ЯЩИК ПРЕДЛОЖЕНИЙ</span><br>
-            <span class="comments-count">(${count})</span>
+            <span class="comments-count">(${commentCount})</span>
         </div>
-
         <div class="comments-form">
-            <input type="text" id="comment-author" data-i18n-placeholder="comment_name_placeholder"
-                   placeholder="Имя" maxlength="30" required>
-            <textarea id="comment-link" data-i18n-placeholder="comment_link_placeholder"
-                      placeholder="Ссылка на вас (необязательно)" maxlength="200" rows="2"></textarea>
-            <textarea id="comment-text" data-i18n-placeholder="comment_text_placeholder"
-                      placeholder="Напиши что-нибудь..." maxlength="500" rows="2"></textarea>
+            <input type="text" id="comment-author" maxlength="30" required
+                   data-i18n-placeholder="comment_name_placeholder" placeholder="Имя">
+            <textarea id="comment-link" maxlength="200" rows="2"
+                      data-i18n-placeholder="comment_link_placeholder"
+                      placeholder="Ссылка (необязательно)"></textarea>
+            <textarea id="comment-text" maxlength="500" rows="2" required
+                      data-i18n-placeholder="comment_text_placeholder"
+                      placeholder="Напиши что-нибудь..."></textarea>
             <button type="button" class="comments-button">
                 <span data-i18n="comments_submit">Отправить</span>
             </button>
         </div>
-
         <div class="comments-list"></div>
     `;
+    return shell.firstElementChild;
 }
 
-function updateCommentsCount(delta) {
-    const counter = commentsContainer.querySelector('.comments-count');
+function addStatusMessage(list, messageKey, extraClass = '') {
+    const el = document.createElement('div');
+    el.className = `comment comment-${extraClass || 'status'}`;
+    el.textContent = t(messageKey);
+    list.append(el);
+}
+
+function updateCommentCount(list) {
+    const counter = list.parentElement?.querySelector('.comments-count');
     if (!counter) return;
-
-    const current = Number(counter.textContent.replace(/\D/g, '')) || 0;
-    counter.textContent = `(${current + delta})`;
+    // Real comments only, not status messages.
+    const count = list.querySelectorAll('.comment:not(.comment-status):not(.comment-error)').length;
+    counter.textContent = `(${count})`;
 }
 
-function validateComment(author, text) {
-    if (!author) return 'Введи имя!';
-    if (!text) return 'Напиши что-нибудь!';
-    if (text.length < 2) return 'Слишком короткий комментарий!';
-    return null;
+/* ---------- Submit flow ------------------------------------------------ */
+
+function setSubmitState(button, submitting) {
+    button.disabled = submitting;
+    const label = button.querySelector('[data-i18n]') ?? button;
+    label.textContent = t(submitting ? 'comments_submitting' : 'comments_submit');
 }
 
-async function submitComment() {
-    const author = document.getElementById('comment-author').value.trim();
-    const link = document.getElementById('comment-link').value.trim();
-    const text = document.getElementById('comment-text').value.trim();
+function clearForm(form) {
+    form.querySelectorAll('input, textarea').forEach(field => {
+        field.value = '';
+    });
+}
 
-    const error = validateComment(author, text);
-    if (error) {
-        alert(error);
+async function submitComment(form, list) {
+    const button = form.querySelector('.comments-button');
+    if (button.disabled) return;
+
+    const author  = form.querySelector('#comment-author').value.trim();
+    const rawLink = form.querySelector('#comment-link').value.trim();
+    const body    = form.querySelector('#comment-text').value.trim();
+
+    const errorKey = validateComment({ author, body });
+    if (errorKey) {
+        alert(t(errorKey));
         return;
     }
 
-    const page = getCurrentPage();
+    const link = normalizeLink(rawLink);
+    if (rawLink && !link) {
+        alert(t('comment_error_link_invalid'));
+        return;
+    }
+
+    setSubmitState(button, true);
 
     try {
-        await postComment({ page, author, text, link: link || null });
+        const saved = await createComment({
+            page: getCurrentPage(),
+            author,
+            body,
+            link,
+        });
+
+        if (saved) {
+            list.prepend(buildComment(saved));
+            updateCommentCount(list);
+            clearForm(form);
+        } else {
+            // Server accepted but returned no body — treat as an error.
+            throw new Error('Empty representation from Supabase');
+        }
     } catch (err) {
-        console.error(err);
-        alert('Ошибка при отправке комментария!');
-        return;
+        console.error('[comments] submit failed:', err);
+        alert(t('comment_error_send'));
+    } finally {
+        setSubmitState(button, false);
     }
-
-    const list = commentsContainer.querySelector('.comments-list');
-    list.prepend(buildCommentElement({
-        page,
-        author,
-        text,
-        link: link || null,
-        created_at: new Date().toISOString(),
-    }));
-    updateCommentsCount(1);
-
-    document.getElementById('comment-author').value = '';
-    document.getElementById('comment-link').value = '';
-    document.getElementById('comment-text').value = '';
 }
+
+/* ---------- Boot ------------------------------------------------------- */
 
 async function renderComments() {
+    if (!rootEl) return;
+
     let comments = [];
+    let loadFailed = false;
+
     try {
         comments = await fetchComments();
-    } catch (error) {
-        console.error('Не удалось загрузить комментарии:', error);
+    } catch (err) {
+        console.error('[comments] load failed:', err);
+        loadFailed = true;
     }
 
-    commentsContainer.innerHTML = renderCommentsLayout(comments.length);
-    commentsContainer.querySelector('.comments-button')
-        .addEventListener('click', submitComment);
+    const shell = buildShell(comments.length);
+    rootEl.replaceChildren(shell);
 
-    const list = commentsContainer.querySelector('.comments-list');
-    const fragment = document.createDocumentFragment();
-    for (const comment of comments) {
-        fragment.appendChild(buildCommentElement(comment));
+    const form = shell.querySelector('.comments-form');
+    const list = shell.querySelector('.comments-list');
+
+    form.querySelector('.comments-button')
+        .addEventListener('click', () => submitComment(form, list));
+
+    if (loadFailed) {
+        addStatusMessage(list, 'comment_error_load', 'error');
+    } else if (comments.length === 0) {
+        addStatusMessage(list, 'comments_empty', 'status');
+    } else {
+        const fragment = document.createDocumentFragment();
+        for (const comment of comments) {
+            fragment.append(buildComment(comment));
+        }
+        list.append(fragment);
     }
-    list.appendChild(fragment);
 
     applyTranslations();
 }
 
 function initComments(config) {
-    commentsConfig = config;
-    commentsContainer = document.getElementById('comments-container');
-    if (commentsContainer) renderComments();
+    if (!config?.url || !config?.key) {
+        console.error('[comments] init skipped: invalid config');
+        return;
+    }
+
+    apiConfig = config;
+    rootEl = document.getElementById('comments-container');
+    if (!rootEl) return;
+
+    renderComments();
 }

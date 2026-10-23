@@ -1,16 +1,10 @@
 const STORAGE_KEYS = {
     autosaveStatus: 'schweppes_autosave_status',
-    manualSave: 'schweppes_manual_save',
-    autosave: 'schweppes_autosave',
+    manualSave:     'schweppes_manual_save',
+    autosave:       'schweppes_autosave',
 };
 
-const AUTOSAVE_ICON = { on: '✓', off: '?' };
-
 let autosaveEnabled = localStorage.getItem(STORAGE_KEYS.autosaveStatus) === 'on';
-
-function getCurrentPage() {
-    return window.location.pathname.split('/').pop()?.replace(/\.html$/i, '') || 'index';
-}
 
 async function fetchText(url) {
     const response = await fetch(url);
@@ -36,17 +30,15 @@ async function loadComponent(id, url) {
 
     try {
         target.innerHTML = await fetchText(url);
-    } catch (error) {
-        console.error(error);
-        return;
+        activateInlineScripts(target);
+    } catch (err) {
+        console.error(err);
     }
-
-    activateInlineScripts(target);
 }
 
 function renderAutosaveIcon() {
     const icon = document.getElementById('autosave-icon');
-    if (icon) icon.textContent = autosaveEnabled ? AUTOSAVE_ICON.on : AUTOSAVE_ICON.off;
+    if (icon) icon.textContent = autosaveEnabled ? '✓' : '?';
 }
 
 function toggleAutosave() {
@@ -75,10 +67,7 @@ function loadGame() {
 
 function deleteSave() {
     if (!confirm('Удалить все данные игры?')) return;
-
-    for (const key of Object.values(STORAGE_KEYS)) {
-        localStorage.removeItem(key);
-    }
+    for (const key of Object.values(STORAGE_KEYS)) localStorage.removeItem(key);
     location.reload();
 }
 
