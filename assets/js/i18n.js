@@ -228,6 +228,16 @@ const translations = {
         comment_name_placeholder: "Имя",
         comment_link_placeholder: "Ссылка на вас (необязательно)",
         comment_text_placeholder: "Напиши что-нибудь...",
+        comments_submitting: "Отправка…",
+        comments_empty: "Пока что тут пусто. Будь первым!",
+        comment_error_name_required: "Введи имя!",
+        comment_error_name_too_long: "Имя слишком длинное (макс. 30 символов).",
+        comment_error_text_required: "Напиши что-нибудь!",
+        comment_error_text_too_short: "Слишком короткий комментарий!",
+        comment_error_text_too_long: "Слишком длинный комментарий (макс. 500 символов).",
+        comment_error_link_invalid: "Это не похоже на ссылку. Вставь URL или Email.",
+        comment_error_send: "Не удалось отправить комментарий. Попробуй ещё раз.",
+        comment_error_load: "Не удалось загрузить комментарии.",
         news_text: "швепса в массыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы всем привет ребята я тигр и это новое моё шоу тигр шоу. хехээээээээээээээээээээй здравствуйте друзья меня зовут дмитрий это канал куплинов плей. добрый день дорогие друзья с вами снова перпетум или же александр"
     },
 en: {
@@ -459,12 +469,36 @@ en: {
         comment_name_placeholder: "Name",
         comment_link_placeholder: "Link to you (optional)",
         comment_text_placeholder: "Write something...",
+        comments_submitting: "Sending…",
+        comments_empty: "Nothing here yet. Be the first!",
+        comment_error_name_required: "Enter a name!",
+        comment_error_name_too_long: "Name is too long (max 30 characters).",
+        comment_error_text_required: "Write something!",
+        comment_error_text_too_short: "Comment is too short!",
+        comment_error_text_too_long: "Comment is too long (max 500 characters).",
+        comment_error_link_invalid: "That doesn't look like a link. Paste a URL or Email.",
+        comment_error_send: "Failed to send the comment. Try again.",
+        comment_error_load: "Failed to load comments.",
         news_text: "schweppes to the maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasses hey everyone guys im tiger and this is my new show tiger show. heheyyyyyyyyyyyy hello friends my name is dmitry this is the kuplinov play channel. good afternoon dear friends perpetuum or alexander is with you again"
     }
 };
 
 function getCurrentLanguage() {
     return localStorage.getItem('language') || 'ru';
+}
+
+// Shared, and used by loader.js and comments.js too.
+function getCurrentPage() {
+    const file = window.location.pathname.split('/').pop() || '';
+    return file.replace(/\.html$/i, '') || 'index';
+}
+
+// Look up a single translation key from the current language.
+// Used when the string is needed at runtime (errors, button text),
+// not declaratively via data-i18n.
+function t(key, fallback) {
+    const dict = translations[getCurrentLanguage()];
+    return dict?.[key] ?? fallback ?? key;
 }
 
 function setLanguage(lang) {
