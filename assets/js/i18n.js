@@ -1,3 +1,15 @@
+// Shared, and used by loader.js and comments.js too.
+function getCurrentPage() {
+    const file = window.location.pathname.split('/').pop() || '';
+    return file.replace(/\.html$/i, '') || 'index';
+}
+
+// Look up a single translation key from the current language.
+function t(key, fallback) {
+    const dict = translations[getCurrentLanguage()];
+    return dict?.[key] ?? fallback ?? key;
+}
+
 const translations = {
     ru: {
         nav_map: "КАРТА",
@@ -485,20 +497,6 @@ en: {
 
 function getCurrentLanguage() {
     return localStorage.getItem('language') || 'ru';
-}
-
-// Shared, and used by loader.js and comments.js too.
-function getCurrentPage() {
-    const file = window.location.pathname.split('/').pop() || '';
-    return file.replace(/\.html$/i, '') || 'index';
-}
-
-// Look up a single translation key from the current language.
-// Used when the string is needed at runtime (errors, button text),
-// not declaratively via data-i18n.
-function t(key, fallback) {
-    const dict = translations[getCurrentLanguage()];
-    return dict?.[key] ?? fallback ?? key;
 }
 
 function setLanguage(lang) {

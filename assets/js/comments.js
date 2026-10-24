@@ -1,10 +1,5 @@
 /* =========================================================================
    Comments widget — Supabase + vanilla JS
-   =========================================================================
-   Responsibilities:
-     - fetch a limited feed of recent comments
-     - render form + list into #comments-container
-     - validate input on submit, then POST and prepend the server's row
    ========================================================================= */
 
 const COMMENTS_PAGE_SIZE = 100;
@@ -15,7 +10,6 @@ const COMMENT_LIMITS = {
     link:   200,
 };
 
-// null until initComments(config) is called.
 let apiConfig = null;
 let rootEl = null;
 
@@ -35,8 +29,6 @@ async function request(path, init = {}) {
         throw new Error(`Supabase ${response.status} ${response.statusText}`);
     }
 
-    // Supabase returns 204 for "no content", and 201 with an array
-    // when `Prefer: return=representation` is set.
     if (response.status === 204) return null;
     const text = await response.text();
     return text ? JSON.parse(text) : null;
@@ -66,35 +58,28 @@ async function createComment(payload) {
 /* ---------- Validation ------------------------------------------------- */
 
 function validateComment({ author, body }) {
-    if (!author)                            return 'comment_error_name_required';
-    if (author.length > COMMENT_LIMITS.author) return 'comment_error_name_too_long';
-    if (!body)                              return 'comment_error_text_required';
-    if (body.length < 2)                    return 'comment_error_text_too_short';
-    if (body.length > COMMENT_LIMITS.body)  return 'comment_error_text_too_long';
+    if (!author)                                return 'comment_error_name_required';
+    if (author.length > COMMENT_LIMITS.author)  return 'comment_error_name_too_long';
+    if (!body)                                  return 'comment_error_text_required';
+    if (body.length < 2)                        return 'comment_error_text_too_short';
+    if (body.length > COMMENT_LIMITS.body)      return 'comment_error_text_too_long';
     return null;
 }
 
-// Returns a valid absolute URL string or null.
-// Accepts "example.com", auto-prefixes https://, and refuses
-// non-http(s) schemes (this is what stops `javascript:` XSS via href).
 // Returns a valid absolute URL, a mailto: link, or null.
 function normalizeLink(raw) {
     const trimmed = raw.trim();
     if (!trimmed) return null;
     if (trimmed.length > COMMENT_LIMITS.link) return null;
 
-    // Is it an email?
+    // If it looks like an email, turn it into a mailto link.
     if (trimmed.includes('@') && !trimmed.includes('/')) {
-        // Simple check to ensure it's somewhat valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(trimmed) ? `mailto:${trimmed}` : null;
     }
 
-    // Otherwise, treat it as a URL
-    const candidate = /^https?:\/\//i.test(trimmed)
-        ? trimmed
-        : `https://${trimmed}`;
-
+    // Otherwise, treat it as a URL and ensure it uses http(s).
+    const candidate = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
     try {
         const url = new URL(candidate);
         return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
@@ -109,9 +94,7 @@ function formatDate(iso) {
     const date = new Date(iso);
     if (Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString(getCurrentLanguage(), {
-        day:   '2-digit',
-        month: '2-digit',
-        year:  'numeric',
+        day: '2-digit', month: '2-digit', year: 'numeric',
     });
 }
 
@@ -125,6 +108,7 @@ function buildComment(comment) {
     const author = document.createElement(comment.link ? 'a' : 'span');
     author.className = comment.link ? 'comment-author-link' : 'comment-author';
     author.textContent = comment.author;
+    
     if (comment.link) {
         author.href = comment.link;
         author.target = '_blank';
@@ -189,7 +173,6 @@ function addStatusMessage(list, messageKey, extraClass = '') {
 function updateCommentCount(list) {
     const counter = list.parentElement?.querySelector('.comments-count');
     if (!counter) return;
-    // Real comments only, not status messages.
     const count = list.querySelectorAll('.comment:not(.comment-status):not(.comment-error)').length;
     counter.textContent = `(${count})`;
 }
@@ -243,7 +226,6 @@ async function submitComment(form, list) {
             updateCommentCount(list);
             clearForm(form);
         } else {
-            // Server accepted but returned no body — treat as an error.
             throw new Error('Empty representation from Supabase');
         }
     } catch (err) {
