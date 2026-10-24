@@ -160,7 +160,7 @@ function buildShell(commentCount) {
         </div>
         <div class="comments-list"></div>
     `;
-    return shell.firstElementChild;
+    return shell;
 }
 
 function addStatusMessage(list, messageKey, extraClass = '') {
